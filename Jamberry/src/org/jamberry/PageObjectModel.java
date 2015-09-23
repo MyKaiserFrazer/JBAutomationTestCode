@@ -32,7 +32,7 @@ public class PageObjectModel {
 		// Maximize the browser's window
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		PropertyConfigurator.configure("C:\\Users\\John Steele\\workspace\\Jamberry\\src\\log4j.properties");
+		PropertyConfigurator.configure("C:\\Users\\John Steele\\repos\\automationtestcode\\Jamberry\\src\\log4j.properties");
 	}
 
 	@Test
