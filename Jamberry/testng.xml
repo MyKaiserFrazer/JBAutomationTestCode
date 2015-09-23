@@ -1,0 +1,13 @@
+<suite name="TestSuite">
+<test name="JamberryHomePage" preserve-order="true">
+<groups>
+	<run>
+		<include name="originStartPage" />
+	</run>
+</groups>
+<classes>
+	<class name="org.jamberry.AuLoginTestPgObMd">
+	</class>
+</classes>
+</test>
+</suite>
