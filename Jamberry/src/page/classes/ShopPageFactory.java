@@ -1,5 +1,6 @@
 package page.classes;
 
+import utilities.*;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,16 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class ShopPageFactory {
 	WebDriver driver;
-	public static WebElement element = null;
 	static Logger log = Logger.getLogger(ShopPageFactory.class);
-	static String refURL = "https://www.jamberry.com/au/en/shop/?collection=collection%3A%2F%2F1120";
 	
-	// constructor, initialize the @FindBy elements
-	public ShopPageFactory(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-	}
-
 	@FindBy(xpath=".//*[@id='mainnav-collapse']/ul/li[2]/a")
 	WebElement shopMenuItem;
 	
@@ -42,11 +35,24 @@ public class ShopPageFactory {
 	
 	@FindBy(xpath=".//*[@id='gelenamel']/a")
 	WebElement gelEnamelMenuItem;
+	
+	@FindBy(xpath="//a[@class='add-cart-btn'][contains(@data-reactid,'butterfly-kisses')]")
+	WebElement butterflyKissesAddToCart;
+	
+	@FindBy(xpath="//a[@class='add-cart-btn'][contains(@data-reactid,'leo-geo-lace')]")
+	WebElement leoGeoLaceToCart;
+
+
+	// constructor, initialize the @FindBy elements
+	public ShopPageFactory(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
 
 	// This method is to get to a known place (Shop page with nail wraps product displayed for now).
 	public void referenceStartPage() {
 		System.out.println("Current URL is: " + driver.getCurrentUrl());
-		if(!refURL.equals(driver.getCurrentUrl())) {
+		if(!Constants.Reference_URL.equals(driver.getCurrentUrl())) {
 			driver.get("https://www.jamberry.com/au/en/shop/");
 			shopMenuItem.click();
 			log.info("Just clicked on Shop menu item");
@@ -63,5 +69,14 @@ public class ShopPageFactory {
 	public void clickNailWrapsMenu() {
 		nailWrapsMenuItem.click();
 	}
+	
+	public void addButterflyKissesToCart() {
+		butterflyKissesAddToCart.click();
+	}
+	
+	public void addLeoGeoLaceToCart() {
+		leoGeoLaceToCart.click();
+	}
+
 
 }

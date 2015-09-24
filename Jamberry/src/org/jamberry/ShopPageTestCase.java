@@ -1,5 +1,6 @@
 package org.jamberry;
 
+import utilities.*;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 import org.apache.log4j.PropertyConfigurator;
@@ -14,39 +15,48 @@ import page.classes.ShopPageFactory;
 
 public class ShopPageTestCase {
 	private WebDriver driver;
-	private String baseUrl;
+//	private String baseUrl;
 	ShopPageFactory shopPage;
 	
 
 	@Before
 	public void setUp() throws Exception {
-		// Setup a Firefox profile for use in Automation testing.
-		File file = new File("C:\\Users\\John Steele\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\QAAutomation");
+		/**
+		 *  Setup a Firefox profile for use in Automation testing in the "QAAutomation" folder.
+		 */
+		File file = new File(Constants.Firefox_Profile);
 		FirefoxProfile profile = new FirefoxProfile(file);		
 		driver = new FirefoxDriver(profile);
 		
-		// Creating a new object for the Shop Page. This calls the constructor of ShopPageFactory class. See that constructor 
-		// in ShopPageFactory.java
+		/**
+		 *  Creating a new object for the Shop Page. This calls the constructor of ShopPageFactory class. See that constructor
+		 *  in ShopPageFactory.java 
+		 */
 		shopPage = new ShopPageFactory(driver);
 		
-		// Using **Australia** site as reference ../au/en/..
-		baseUrl = "https://www.jamberry.com/au/en/shop/";
+		/**
+		 *  Using **Australia** site as the reference url ../au/en/..
+		 */
+//		baseUrl = "https://www.jamberry.com/au/en/shop/";
 		
-		// Maximize the browser's window, set the delay.
+		/**
+		 *  Maximize the browser's window, set the delay.
+		 */
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		PropertyConfigurator.configure("C:\\Users\\John Steele\\repos\\automationtestcode\\Jamberry\\src\\log4j.properties");
+		PropertyConfigurator.configure(Constants.Prop_Config);
+		driver.get(Constants.URL);
 	}
 
 	@Test
-	public void roboTest() {
-		driver.get(baseUrl);
+	public void test() throws Exception {
 		shopPage.referenceStartPage();
-/*		ShopPage.destinationTextBox(driver).sendKeys("Chicago");
-		ShopPage.departureDateTextBox(driver).sendKeys("12/25/2014");
-		ShopPage.returnDateTextBox(driver).sendKeys("12/31/2014");
-		ShopPage.clickOnSearchButton(driver);*/
-	}
+		shopPage.addButterflyKissesToCart();
+		shopPage.addLeoGeoLaceToCart();
+/*		shopPage.departureDateTextBox(driver).sendKeys("12/25/2014");
+		shopPage.returnDateTextBox(driver).sendKeys("12/31/2014");
+		shopPage.clickOnSearchButton(driver);
+*/	}
 	
 	@After
 	public void tearDown() throws Exception {
