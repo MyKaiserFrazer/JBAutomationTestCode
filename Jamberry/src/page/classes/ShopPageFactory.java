@@ -51,6 +51,13 @@ public class ShopPageFactory {
 	
 	@FindBy(xpath="//a[@class='add-cart-btn'][contains(@data-reactid,'leo-geo-lace')]")
 	WebElement leoGeoLaceWrapAddToCart;
+	
+	@FindBy(xpath=".//*[@id='jbn-shop']/div/div/div[2]/div/div[2]/div[1]/div/div/div/a[1]")
+	WebElement firstWrapAddToCart;
+	
+	@FindBy(xpath=".//*[@id='jbn-shop']/div/div/div[2]/div/div[2]/div[2]/div/div/div/a[1]")
+	WebElement secondWrapAddToCart;
+
 
 	/**
 	 * constructor, also initializes the @FindBy elements with Selenium PageFactory class
@@ -103,6 +110,23 @@ public class ShopPageFactory {
 	}
 	
 	/**
+	 * The wraps on the Shop page change frequently so I will instead just pick the first one there.
+	 */
+	public void addFirstWrapToCart() {
+		firstWrapAddToCart.click();
+		log.info("Just added the first wrap on the Shop page to the cart.");
+	}
+	
+	/**
+	 * The wraps on the Shop page change frequently so I will instead just pick the second one there.
+	 */
+	public void addSecondWrapToCart() {
+		secondWrapAddToCart.click();
+		log.info("Just added the second wrap on the Shop page to the cart.");
+	}
+
+	
+	/**
 	 * Adds the Leo, Geo & Lace type wrap to the Cart.
 	 */
 	public void addLeoGeoLaceWrapToCart() {
@@ -116,6 +140,7 @@ public class ShopPageFactory {
 	public void gotoCartPage() {
 		cartButton.click();;
 		log.info("Just clicked on the Cart button.");
+	}
 /*		double expectedMerchandiseTotal = 44.00;
 		// String actualMerchandiseTotal;
 		
@@ -135,10 +160,10 @@ public class ShopPageFactory {
 				// and total-before-tax.
 				actualMerchandiseTotal = driver.findElement(By.xpath("//div[@class='cart-totals']//td[@data-bind='currencyDisplay: merchandiseTotal']")).getText();
 				
-*/			}
+			}
 		}
 		
 		
 	}
-
+*/
 }

@@ -51,8 +51,8 @@ public class ShopPageTestCase {
 	@Test
 	public void test() throws Exception {
 		shopPage.referenceStartPage();
-		shopPage.addButterflyKissesWrapToCart();
-		shopPage.addLeoGeoLaceWrapToCart();
+		shopPage.addFirstWrapToCart();
+		shopPage.addSecondWrapToCart();
 		shopPage.gotoCartPage();
 /*		shopPage.returnDateTextBox(driver).sendKeys("12/31/2014");
 		shopPage.clickOnSearchButton(driver);
