@@ -1,12 +1,12 @@
 package org.jamberry;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
 import utilities.*;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 import org.apache.log4j.PropertyConfigurator;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -19,7 +19,7 @@ public class ShopPageTestCase {
 	ShopPageFactory shopPage;
 	
 
-	@Before
+	@BeforeMethod
 	public void setUp() throws Exception {
 		/**
 		 *  Setup a Firefox profile for use in Automation testing in the "QAAutomation" folder.
@@ -51,15 +51,16 @@ public class ShopPageTestCase {
 	@Test
 	public void test() throws Exception {
 		shopPage.referenceStartPage();
-		shopPage.addButterflyKissesToCart();
-		shopPage.addLeoGeoLaceToCart();
-/*		shopPage.departureDateTextBox(driver).sendKeys("12/25/2014");
-		shopPage.returnDateTextBox(driver).sendKeys("12/31/2014");
+		shopPage.addButterflyKissesWrapToCart();
+		shopPage.addLeoGeoLaceWrapToCart();
+		shopPage.gotoCartPage();
+/*		shopPage.returnDateTextBox(driver).sendKeys("12/31/2014");
 		shopPage.clickOnSearchButton(driver);
 */	}
 	
-	@After
+	@AfterMethod
 	public void tearDown() throws Exception {
+//		driver.quit();
 	}
 	
 	
