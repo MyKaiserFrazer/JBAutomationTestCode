@@ -3,6 +3,7 @@ package page.classes;
 import utilities.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -31,6 +32,9 @@ public class ShopPageFactory {
 	@FindBy(xpath="//li[@class='cart-btn mini-cart']//a[contains(@href,'/shop/cart')]")
 	WebElement cartButton;
 	
+	@FindBy(xpath="//li[@class='login-btn']//a[contains(@href,'/shop/account')]")
+	WebElement buttonBarLoginButton;
+	
 	@FindBy(name="search-btn")
 	WebElement searchButton;
 	
@@ -57,7 +61,21 @@ public class ShopPageFactory {
 	
 	@FindBy(xpath=".//*[@id='jbn-shop']/div/div/div[2]/div/div[2]/div[2]/div/div/div/a[1]")
 	WebElement secondWrapAddToCart;
-
+	
+	@FindBy(xpath=".//*[@id='jbn-shop']/div/div/div[2]/div/div[2]/div[3]/div/div/div/a[1]")
+	WebElement thirdWrapAddToCart;
+	
+	@FindBy(xpath=".//*[@id='UserName']")
+	WebElement loginUserNameEditControl;
+	
+	@FindBy(xpath=".//*[@id='Password']")
+	WebElement passwordEditControl;
+	
+	@FindBy(xpath="//input[@class='btn btn-success']")
+	WebElement accountPageLoginButton;
+	
+	@FindBy(xpath="//li[@class='login-btn']//a[contains(@href,'/shop/myaccount')]")
+	WebElement buttonBarMyAccountButton;
 
 	/**
 	 * constructor, also initializes the @FindBy elements with Selenium PageFactory class
@@ -124,8 +142,15 @@ public class ShopPageFactory {
 		secondWrapAddToCart.click();
 		log.info("Just added the second wrap on the Shop page to the cart.");
 	}
-
 	
+	/**
+	 * The wraps on the Shop page change frequently so I will instead just pick the third one there.
+	 */
+	public void addThirdWrapToCart() {
+		thirdWrapAddToCart.click();
+		log.info("Just added the third wrap on the Shop page to the cart.");
+	}
+		
 	/**
 	 * Adds the Leo, Geo & Lace type wrap to the Cart.
 	 */
@@ -141,6 +166,43 @@ public class ShopPageFactory {
 		cartButton.click();;
 		log.info("Just clicked on the Cart button.");
 	}
+	
+	public void clickButtonBarLoginButton() {
+		buttonBarLoginButton.click();
+		log.info("Just clicked the login button on the button-bar");
+	}
+	
+	public void enterLoginUserID() {
+		loginUserNameEditControl.sendKeys("kroo@jamberry.com");
+		log.info("Just entered the login userID");
+	}
+	
+	public void enterPassword() {
+		passwordEditControl.sendKeys("Test123!");
+		log.info("Just entered the password");
+	}
+	
+	public void clickAccountPageLoginButton() {
+		accountPageLoginButton.click();
+		log.info("Just clicked the Login button on the account page");
+	}
+	
+	public void clickMyAccountButtonBarButton() {
+		buttonBarMyAccountButton.click();
+		log.info("Just clicked the MyAccount button-bar button");
+	}
+	
+	public void findItemsInCart() {
+		List<WebElement> allElements = driver.findElements(By.xpath("//table[@class='items-list']/tbody//tr[@class='item']"));
+
+		log.info("The number of Cart items found are: " + allElements.size());
+		
+/*		for(WebElement element: allElements) {
+			log.info(element.getText());
+		}
+*/	}
+
+	
 /*		double expectedMerchandiseTotal = 44.00;
 		// String actualMerchandiseTotal;
 		
