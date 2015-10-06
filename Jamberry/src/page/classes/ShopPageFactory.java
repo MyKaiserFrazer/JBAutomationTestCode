@@ -1,10 +1,7 @@
 package page.classes;
 
 import utilities.*;
-
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Set;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -84,7 +81,7 @@ public class ShopPageFactory {
 	public ShopPageFactory(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		log.info("Just called PageFactory.initElements.");
+		log.info("Just called PageFactory.initElements for ShopPageFactory.");
 	}
 	
 	/**
@@ -174,7 +171,7 @@ public class ShopPageFactory {
 	
 	public void enterLoginUserID() {
 		loginUserNameEditControl.sendKeys("kroo@jamberry.com");
-		log.info("Just entered the login userID");
+		log.info("Just entered the userID");
 	}
 	
 	public void enterPassword() {
@@ -192,16 +189,6 @@ public class ShopPageFactory {
 		log.info("Just clicked the MyAccount button-bar button");
 	}
 	
-	public void findItemsInCart() {
-		List<WebElement> allElements = driver.findElements(By.xpath("//table[@class='items-list']/tbody//tr[@class='item']"));
-
-		log.info("The number of Cart items found are: " + allElements.size());
-		
-/*		for(WebElement element: allElements) {
-			log.info(element.getText());
-		}
-*/	}
-
 	
 /*		double expectedMerchandiseTotal = 44.00;
 		// String actualMerchandiseTotal;
