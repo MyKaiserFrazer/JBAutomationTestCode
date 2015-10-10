@@ -20,6 +20,7 @@ public class ConsultantPageFactory {
 	/**
 	 * constructor, also initializes the @FindBy elements with Selenium PageFactory class
 	 * @param driver
+	 * @throws Exception 
 	 */
 	public ConsultantPageFactory(WebDriver driver) {
 		this.driver = driver;
@@ -27,8 +28,12 @@ public class ConsultantPageFactory {
 		log.info("Just called PageFactory.initElements for ConsultantPageFactory.");
 	}
 
+	/**
+	 * Ensure I'm still on the right page.
+	 * @throws Exception
+	 */
 	public void referenceStartPage() throws Exception {
-		System.out.println("Current URL is: " + driver.getCurrentUrl());
+		log.info("Current URL is: " + driver.getCurrentUrl());
 		if(!Constants.Reference_cpiURL.equals(driver.getCurrentUrl())) {
 			driver.get(Constants.cpiURL);	// opens the web page.
 			log.info("On the base URL");
@@ -52,6 +57,18 @@ public class ConsultantPageFactory {
 	
 	@FindBy(id="BirthDate")
 	WebElement calBirthDate;
+	
+	@FindBy(id="Phone")
+	WebElement ctlPhoneField;
+	
+	@FindBy(id="Password")
+	WebElement ctlPasswordField;
+
+	@FindBy(id="PasswordConfirm")
+	WebElement ctlPasswordConfirmField;
+	
+	@FindBy(id="continue-btn")
+	WebElement btnContinueEnterBasicInfo;
 
 	public void clickGetStartedButton() {
 		btnGetStarted.click();
@@ -126,7 +143,25 @@ public class ConsultantPageFactory {
 	}
 	
 	public void addPhoneNumber() {
-		
+		ctlPhoneField.clear();
+		int areaCode = randInt(200,999);
+		int cityCode = randInt(200,999);
+		int mainCode = randInt(0,9999);
+		ctlPhoneField.sendKeys("+1(" + String.valueOf(areaCode) + ")." + String.valueOf(cityCode) + "-" + 
+				String.valueOf(mainCode));
+	}
+	
+	public void addPassword() {
+		ctlPasswordField.clear();
+		ctlPasswordField.sendKeys("Test123!");
+	}
+	
+	public void addPasswordConfirm() {
+		ctlPasswordConfirmField.sendKeys("Test123!");
+	}
+
+	public void clickEBIContinueButton() {
+		btnContinueEnterBasicInfo.click();
 	}
 
 }
