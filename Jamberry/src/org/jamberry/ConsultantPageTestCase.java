@@ -3,6 +3,7 @@ package org.jamberry;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import utilities.*;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -13,10 +14,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
-import page.classes.CartPageFactory;
 import page.classes.ConsultantPageFactory;
 import page.classes.SponsorSearchPageFactory;
-import page.classes.ShopPageFactory;
 import page.classes.StarterKitPageFactory;
 
 public class ConsultantPageTestCase {
@@ -26,7 +25,7 @@ public class ConsultantPageTestCase {
 	SponsorSearchPageFactory sponsorSearchPage;
 	StarterKitPageFactory starterKitPage;
 	
-	@BeforeMethod
+	@BeforeSuite
 	public void setUp() throws Exception {
 		/**
 		 *  Setup a generic Firefox profile for use in Automation testing in the "QAAutomation" folder.
@@ -70,10 +69,14 @@ public class ConsultantPageTestCase {
 		log.info("Got the url to start with");
 	}
 	
-	@Test
-	public void test() throws Exception {
-		log.info("About to call consultPage.referenceStartPage from the test case class");
+	@BeforeMethod
+	public void testPrepBefore() throws Exception {
+		log.info("About to call consultPage.referenceStartPage before the test has started");
 		consultPage.referenceStartPage();
+	}
+	
+	@Test(groups = {"HappyPath"}, priority=0)
+	public void testAll() throws Exception {
 		consultPage.clickGetStartedButton();
 		consultPage.addFirstName();
 		consultPage.addLastName();
@@ -93,10 +96,144 @@ public class ConsultantPageTestCase {
 		starterKitPage.select3Wraps();
 	}
 	
+	@Test(groups = {"OneEmptyField"}, priority=1)
+	public void testNoFirstName() throws Exception {
+		consultPage.clickGetStartedButton();
+//		consultPage.addFirstName();
+		consultPage.addLastName();
+		consultPage.addEmail();
+		consultPage.selLanguage();
+		consultPage.selState(); // this is random
+		consultPage.selBirthDate(); // this is a random birth date
+		consultPage.addPhoneNumber(); // this is a random phone number
+		consultPage.addPassword();
+		consultPage.addPasswordConfirm();
+		Thread.sleep(3000);
+		consultPage.clickEBIContinueButton();
+		sponsorSearchPage.clickChooseDifferentSponsor();
+		sponsorSearchPage.clickNameSponsorControl();
+		sponsorSearchPage.selSponsors();
+		sponsorSearchPage.clickSponsorConfirmButton();
+		starterKitPage.clickSelectYour3WrapsButton();
+		starterKitPage.select3Wraps();
+	}
+	
+	@Test(groups = {"OneEmptyField"}, priority=2)
+	public void testNoLastName() throws Exception {
+		consultPage.clickGetStartedButton();
+		consultPage.addFirstName();
+//		consultPage.addLastName();
+		consultPage.addEmail();
+		consultPage.selLanguage();
+		consultPage.selState(); // this is random
+		consultPage.selBirthDate(); // this is a random birth date
+		consultPage.addPhoneNumber(); // this is a random phone number
+		consultPage.addPassword();
+		consultPage.addPasswordConfirm();
+		Thread.sleep(3000);
+		consultPage.clickEBIContinueButton();
+		sponsorSearchPage.clickChooseDifferentSponsor();
+		sponsorSearchPage.clickNameSponsorControl();
+		sponsorSearchPage.selSponsors();
+		sponsorSearchPage.clickSponsorConfirmButton();
+		starterKitPage.clickSelectYour3WrapsButton();
+		starterKitPage.select3Wraps();
+	}
+	
+	@Test(groups = {"OneEmptyField"}, priority=3)
+	public void testNoEmail() throws Exception {
+		consultPage.clickGetStartedButton();
+		consultPage.addFirstName();
+		consultPage.addLastName();
+//		consultPage.addEmail();
+		consultPage.selLanguage();
+		consultPage.selState(); // this is random
+		consultPage.selBirthDate(); // this is a random birth date
+		consultPage.addPhoneNumber(); // this is a random phone number
+		consultPage.addPassword();
+		consultPage.addPasswordConfirm();
+		Thread.sleep(3000);
+		consultPage.clickEBIContinueButton();
+		sponsorSearchPage.clickChooseDifferentSponsor();
+		sponsorSearchPage.clickNameSponsorControl();
+		sponsorSearchPage.selSponsors();
+		sponsorSearchPage.clickSponsorConfirmButton();
+		starterKitPage.clickSelectYour3WrapsButton();
+		starterKitPage.select3Wraps();
+	}
+	
+	@Test(groups = {"OneEmptyField"}, priority=4)
+	public void testNoState() throws Exception {
+		consultPage.clickGetStartedButton();
+		consultPage.addFirstName();
+		consultPage.addLastName();
+		consultPage.addEmail();
+		consultPage.selLanguage();
+//		consultPage.selState(); // this is random
+		consultPage.selBirthDate(); // this is a random birth date
+		consultPage.addPhoneNumber(); // this is a random phone number
+		consultPage.addPassword();
+		consultPage.addPasswordConfirm();
+		Thread.sleep(3000);
+		consultPage.clickEBIContinueButton();
+		sponsorSearchPage.clickChooseDifferentSponsor();
+		sponsorSearchPage.clickNameSponsorControl();
+		sponsorSearchPage.selSponsors();
+		sponsorSearchPage.clickSponsorConfirmButton();
+		starterKitPage.clickSelectYour3WrapsButton();
+		starterKitPage.select3Wraps();
+	}
+	
+	@Test(groups = {"OneEmptyField"}, priority=5)
+	public void testNoBirthDate() throws Exception {
+		consultPage.clickGetStartedButton();
+		consultPage.addFirstName();
+		consultPage.addLastName();
+		consultPage.addEmail();
+		consultPage.selLanguage();
+		consultPage.selState(); // this is random
+//		consultPage.selBirthDate(); // this is a random birth date
+		consultPage.addPhoneNumber(); // this is a random phone number
+		consultPage.addPassword();
+		consultPage.addPasswordConfirm();
+		Thread.sleep(3000);
+		consultPage.clickEBIContinueButton();
+		sponsorSearchPage.clickChooseDifferentSponsor();
+		sponsorSearchPage.clickNameSponsorControl();
+		sponsorSearchPage.selSponsors();
+		sponsorSearchPage.clickSponsorConfirmButton();
+		starterKitPage.clickSelectYour3WrapsButton();
+		starterKitPage.select3Wraps();
+	}
+	
+	@Test(groups = {"OneEmptyField"}, priority=6)
+	public void testNoPhoneNumber() throws Exception {
+		consultPage.clickGetStartedButton();
+		consultPage.addFirstName();
+		consultPage.addLastName();
+		consultPage.addEmail();
+		consultPage.selLanguage();
+		consultPage.selState(); // this is random
+		consultPage.selBirthDate(); // this is a random birth date
+//		consultPage.addPhoneNumber(); // this is a random phone number
+		consultPage.addPassword();
+		consultPage.addPasswordConfirm();
+		Thread.sleep(3000);
+		consultPage.clickEBIContinueButton();
+		sponsorSearchPage.clickChooseDifferentSponsor();
+		sponsorSearchPage.clickNameSponsorControl();
+		sponsorSearchPage.selSponsors();
+		sponsorSearchPage.clickSponsorConfirmButton();
+		starterKitPage.clickSelectYour3WrapsButton();
+		starterKitPage.select3Wraps();
+	}
+	
 	@AfterMethod
 	public void tearDown() throws Exception {
-//		Thread.sleep(2000);
-//		driver.quit();
+		log.info("About to call consultPage.referenceStartPage after a test has finished.");
+		consultPage.referenceStartPage();
+		//		Thread.sleep(2000);
+		//		driver.quit();
 	}
 
 }

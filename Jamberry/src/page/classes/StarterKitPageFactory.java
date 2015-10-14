@@ -1,7 +1,5 @@
 package page.classes;
 
-import utilities.Constants;
-import utilities.*;
 import java.util.List;
 import java.util.Random;
 
@@ -58,9 +56,7 @@ public class StarterKitPageFactory {
 		int num1 = randInt(1,maxSize);
 		int num2 = randInt(1,maxSize);
 		int num3 = randInt(1,maxSize);
-		
-		
-
+	
 	}
 
 }

@@ -1,7 +1,6 @@
 package page.classes;
 
 import utilities.Constants;
-import utilities.*;
 import java.util.List;
 import java.util.Random;
 
@@ -75,6 +74,19 @@ public class ConsultantPageFactory {
 		log.info("Just clicked the Get Started button." );
 	}
 	
+/*	public void clearAllInputFields() {
+		log.info("About to clear all input fields");
+		ctlFirstNameField.clear();
+		ctlLastNameField.clear();
+		ctlEmailField.clear();
+		ddnCtlState.clear();
+		calBirthDate.clear();
+		ctlPhoneField.clear();
+		ctlPasswordField.clear();
+		ctlPasswordConfirmField.clear();
+		log.info("Just cleared all input fields");
+	}
+*/	
 	public void addFirstName() {
 		ctlFirstNameField.clear();
 		ctlFirstNameField.sendKeys("John");
@@ -115,7 +127,7 @@ public class ConsultantPageFactory {
 		// Get the number of options and randomly pick one
 		int sizeMax = statesList.size();
 		int randNum = randInt(1, sizeMax); // get my index to a State
-		
+	
 		sel1.selectByIndex(randNum);
 		log.info("Choosing the state " + randNum);		
 	}
@@ -138,6 +150,7 @@ public class ConsultantPageFactory {
 		int monthNum = randInt(1,12);
 		int dayNum = randInt(1,31);
 		
+		calBirthDate.clear();
 		calBirthDate.sendKeys(String.valueOf(monthNum) + "-" + String.valueOf(dayNum) + "-" + String.valueOf(yearNum));
 		log.info("Just entered the birthdate");
 	}
@@ -147,6 +160,7 @@ public class ConsultantPageFactory {
 		int areaCode = randInt(200,999);
 		int cityCode = randInt(200,999);
 		int mainCode = randInt(0,9999);
+		ctlPhoneField.clear();
 		ctlPhoneField.sendKeys("+1(" + String.valueOf(areaCode) + ")." + String.valueOf(cityCode) + "-" + 
 				String.valueOf(mainCode));
 	}
@@ -157,6 +171,7 @@ public class ConsultantPageFactory {
 	}
 	
 	public void addPasswordConfirm() {
+		ctlPasswordConfirmField.clear();
 		ctlPasswordConfirmField.sendKeys("Test123!");
 	}
 

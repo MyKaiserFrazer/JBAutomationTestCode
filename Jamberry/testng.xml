@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="none">
-  <test name="Test">
+<suite name="TestSuite" preserve-order="true">
+  <test name="ConsultantJoin">
+  <groups>
+  	<define name = "HappyPath and OneEmptyField">
+  		<include name = "HappyPath" />
+  		<include name = "OneEmptyField" />
+  	</define>
+  	<define name = "OneEmptyField">
+  		<include name = "OneEmptyField" />
+  	</define>
+<!-- <run>  -->
+<!-- 	<include name = "OneEmptyField" />  -->
+<!-- </run>  -->
+  </groups>
     <classes>
-      <class name="org.jamberry.UsingExcel"/>
-      <class name="org.jamberry.ShopPageTestCase"/>
+      <class name="org.jamberry.ConsultantPageTestCase">
+      	<methods>
+      		<include name="testAll" />
+      		<!-- <include name="testNoFirstName" /> -->
+      		<include name="testNoLastName" />
+      		<include name="testNoEmail" />
+      		<include name="testNoState" />
+      		<include name="testNoBirthDate" />
+      		<include name="testNoPhoneNumber" />
+      	</methods>
+      </class>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

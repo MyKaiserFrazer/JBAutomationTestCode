@@ -1,19 +1,15 @@
 package page.classes;
 
-import utilities.Constants;
-import utilities.*;
 import java.util.List;
 import java.util.Random;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
 
 public class SponsorSearchPageFactory {
@@ -37,23 +33,31 @@ public class SponsorSearchPageFactory {
 
 	    // nextInt is normally exclusive of the top value,
 	    // so add 1 to make it inclusive
-	    int randomNum = rand.nextInt((max - min) + 1) + min;
+	    int randomNum = rand.nextInt(max - min);
 
 	    return randomNum;
 	}
 	
-	@FindBy(id="name-sponsor-search")
+	@FindBy(xpath="//input[@id='name-sponsor-search']")
 	WebElement ctlNameSponsorSearch;
+	
+	@FindBy(xpath="//a[@class='btn btn-info']")
+	WebElement btnChooseDifferentSponsor;
 	
 	@FindBy(xpath="//div[@class='sponsor-confirm-toolbar']/a[@class='btn btn-primary']")
 	WebElement btnSponsorConfirm;
 
 	
 	public void clickNameSponsorControl() {
+		ctlNameSponsorSearch.clear();
 		ctlNameSponsorSearch.click();
 		ctlNameSponsorSearch.sendKeys("Eli");
 		ctlNameSponsorSearch.sendKeys(Keys.ENTER);
 		log.info("Just entered the search string \"Eli\" and clicked the NameSponsorSearch button." );
+	}
+	
+	public void clickChooseDifferentSponsor() {
+		btnChooseDifferentSponsor.click();
 	}
 
 	public void selSponsors() {
