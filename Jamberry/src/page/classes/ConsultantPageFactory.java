@@ -1,11 +1,14 @@
 package page.classes;
 
 import utilities.Constants;
+import utilities.WaitTypes;
+
 import java.util.List;
 import java.util.Random;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -66,7 +69,7 @@ public class ConsultantPageFactory {
 	@FindBy(id="PasswordConfirm")
 	WebElement ctlPasswordConfirmField;
 	
-	@FindBy(id="continue-btn")
+	@FindBy(xpath="//button[@id='continue-btn']")
 	WebElement btnContinueEnterBasicInfo;
 
 	public void clickGetStartedButton() {
@@ -138,29 +141,29 @@ public class ConsultantPageFactory {
 
 	    // nextInt is normally exclusive of the top value,
 	    // so add 1 to make it inclusive
-	    int randomNum = rand.nextInt((max - min) + 1) + min;
+	    int randomNum = rand.nextInt(max - min);
 
-	    return randomNum;
+	    return randomNum + 1; // can't have a month or day that is zero
 	}
 	
 	public void selBirthDate() {
-		calBirthDate.click();
-		String year, month, day;
-		int yearNum = randInt(1950, 1997);
+		int yearNum = (Constants.baseYear + randInt(1950, 1997));
 		int monthNum = randInt(1,12);
 		int dayNum = randInt(1,31);
 		
-		calBirthDate.clear();
-		calBirthDate.sendKeys(String.valueOf(monthNum) + "-" + String.valueOf(dayNum) + "-" + String.valueOf(yearNum));
+		log.info("The random numbers used for the birthdate are: " + monthNum + " " + dayNum + " " + yearNum);
+		
+		calBirthDate.sendKeys(String.valueOf(monthNum) + "-" + String.valueOf(dayNum) + "-" + String.valueOf(yearNum) + Keys.ENTER);
 		log.info("Just entered the birthdate");
 	}
 	
 	public void addPhoneNumber() {
+		ctlPhoneField.click();
 		ctlPhoneField.clear();
 		int areaCode = randInt(200,999);
 		int cityCode = randInt(200,999);
-		int mainCode = randInt(0,9999);
-		ctlPhoneField.clear();
+		int mainCode = randInt(1000,9999);
+		log.info("The phone number should be: " + areaCode + "." + cityCode + "-" + mainCode);
 		ctlPhoneField.sendKeys("+1(" + String.valueOf(areaCode) + ")." + String.valueOf(cityCode) + "-" + 
 				String.valueOf(mainCode));
 	}
@@ -168,15 +171,20 @@ public class ConsultantPageFactory {
 	public void addPassword() {
 		ctlPasswordField.clear();
 		ctlPasswordField.sendKeys("Test123!");
+		log.info("Entered the password");
 	}
 	
 	public void addPasswordConfirm() {
 		ctlPasswordConfirmField.clear();
 		ctlPasswordConfirmField.sendKeys("Test123!");
+		log.info("Confirmed the password");
 	}
 
 	public void clickEBIContinueButton() {
+		log.info("About to click the Continue button");
 		btnContinueEnterBasicInfo.click();
+		log.info("Clicked the Continue button");
+//		WaitTypes.clickWhenReady(driver, By.xpath("//button[@id='continue-btn']"), 30);
 	}
 
 }

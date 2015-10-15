@@ -28,6 +28,9 @@ public class StarterKitPageFactory {
 	@FindBy(xpath="//a[contains(text(),'Select your 3 wraps')]")
 	WebElement btnSelectYour3Wraps;
 	
+	@FindBy(xpath="//button[@class='continue-button btn btn-primary']")
+	WebElement btnSaveWrapsToCart;
+	
 	public void clickSelectYour3WrapsButton() {
 		btnSelectYour3Wraps.click();
 		log.info("Clicked on the Select Your 3 Wraps button");
@@ -39,7 +42,7 @@ public class StarterKitPageFactory {
 
 	    // nextInt is normally exclusive of the top value,
 	    // so add 1 to make it inclusive
-	    int randomNum = rand.nextInt((max - min) + 1) + min;
+	    int randomNum = rand.nextInt(max - min);
 
 	    return randomNum;
 	}
@@ -52,11 +55,22 @@ public class StarterKitPageFactory {
 		
 		log.info("The number of wraps available are " + wraps.size());
 		
-		int maxSize = wraps.size();
-		int num1 = randInt(1,maxSize);
-		int num2 = randInt(1,maxSize);
-		int num3 = randInt(1,maxSize);
-	
+		int maxSize = wraps.size(); // get the number of wraps that are IN STOCK
+		
+		int num1 = randInt(0,maxSize);	// get 3 random numbers to select 3 wraps of those that are IN STOCK
+		int num2 = randInt(0,maxSize);
+		int num3 = randInt(0,maxSize);
+		log.info("The three random indexes to select wraps are: " + num1 + " " + num2 + " " + num3);
+		
+		wraps.get(num1).click();	// select the 3 wraps
+		wraps.get(num2).click();
+		wraps.get(num3).click();
 	}
+	
+	public void clickSaveWrapsToCartButton() throws Exception {
+		btnSaveWrapsToCart.click();
+		Thread.sleep(3000); // for demo purposes
+	}
+	
 
 }

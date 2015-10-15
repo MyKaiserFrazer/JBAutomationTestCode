@@ -11,6 +11,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.WaitTypes;
+
 
 public class SponsorSearchPageFactory {
 	WebDriver driver;
@@ -35,13 +37,13 @@ public class SponsorSearchPageFactory {
 	    // so add 1 to make it inclusive
 	    int randomNum = rand.nextInt(max - min);
 
-	    return randomNum;
+	    return randomNum + 1;
 	}
 	
 	@FindBy(xpath="//input[@id='name-sponsor-search']")
 	WebElement ctlNameSponsorSearch;
 	
-	@FindBy(xpath="//a[@class='btn btn-info']")
+	@FindBy(xpath="//div[@class='sponsor-confirm-toolbar']/a[@class='btn btn-info']")
 	WebElement btnChooseDifferentSponsor;
 	
 	@FindBy(xpath="//div[@class='sponsor-confirm-toolbar']/a[@class='btn btn-primary']")
@@ -49,11 +51,9 @@ public class SponsorSearchPageFactory {
 
 	
 	public void clickNameSponsorControl() {
-		ctlNameSponsorSearch.clear();
-		ctlNameSponsorSearch.click();
-		ctlNameSponsorSearch.sendKeys("Eli");
-		ctlNameSponsorSearch.sendKeys(Keys.ENTER);
-		log.info("Just entered the search string \"Eli\" and clicked the NameSponsorSearch button." );
+		log.info("About to enter the characters Eli into the Select a Sponsor search control");
+		ctlNameSponsorSearch.sendKeys("Eli" + Keys.ENTER);
+		log.info("Just entered the search string \"Eli\" plus the ENTER key" );
 	}
 	
 	public void clickChooseDifferentSponsor() {
@@ -81,7 +81,7 @@ public class SponsorSearchPageFactory {
 		}
 */		
 		sizeMax =rows.size(); // get the count of search results on the sponsor-search page
-		int randomIndex = randInt(0,sizeMax); // 
+		int randomIndex = randInt(1,sizeMax); // 
 		log.info("The randomIndex value is: " + randomIndex);
 		
 		rows.get(randomIndex).click();

@@ -11,6 +11,6 @@ public class Constants {
 	// Add some more constants for the Consultant Page issue or cpi
 	public static final String cpiURL = "https://www.dev.jamberry.com/us/en/consultant";
 	public static final String Reference_cpiURL = "https://www.dev.jamberry.com/us/en/consultant";
-
+	public static final int baseYear = 1950;
 }
 

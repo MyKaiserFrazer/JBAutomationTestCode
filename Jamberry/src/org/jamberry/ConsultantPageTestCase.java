@@ -77,6 +77,7 @@ public class ConsultantPageTestCase {
 	
 	@Test(groups = {"HappyPath"}, priority=0)
 	public void testAll() throws Exception {
+		log.info("Just entered the testAll() test method");
 		consultPage.clickGetStartedButton();
 		consultPage.addFirstName();
 		consultPage.addLastName();
@@ -87,17 +88,18 @@ public class ConsultantPageTestCase {
 		consultPage.addPhoneNumber(); // this is a random phone number
 		consultPage.addPassword();
 		consultPage.addPasswordConfirm();
-		Thread.sleep(3000);
 		consultPage.clickEBIContinueButton();
 		sponsorSearchPage.clickNameSponsorControl();
 		sponsorSearchPage.selSponsors();
 		sponsorSearchPage.clickSponsorConfirmButton();
 		starterKitPage.clickSelectYour3WrapsButton();
 		starterKitPage.select3Wraps();
+		starterKitPage.clickSaveWrapsToCartButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=1)
 	public void testNoFirstName() throws Exception {
+		log.info("Just entered the testNoFirstName() test method");
 		consultPage.clickGetStartedButton();
 //		consultPage.addFirstName();
 		consultPage.addLastName();
@@ -108,7 +110,6 @@ public class ConsultantPageTestCase {
 		consultPage.addPhoneNumber(); // this is a random phone number
 		consultPage.addPassword();
 		consultPage.addPasswordConfirm();
-		Thread.sleep(3000);
 		consultPage.clickEBIContinueButton();
 		sponsorSearchPage.clickChooseDifferentSponsor();
 		sponsorSearchPage.clickNameSponsorControl();
@@ -116,10 +117,12 @@ public class ConsultantPageTestCase {
 		sponsorSearchPage.clickSponsorConfirmButton();
 		starterKitPage.clickSelectYour3WrapsButton();
 		starterKitPage.select3Wraps();
+		starterKitPage.clickSaveWrapsToCartButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=2)
 	public void testNoLastName() throws Exception {
+		log.info("Just entered the testNoLastName() test method");
 		consultPage.clickGetStartedButton();
 		consultPage.addFirstName();
 //		consultPage.addLastName();
@@ -130,7 +133,6 @@ public class ConsultantPageTestCase {
 		consultPage.addPhoneNumber(); // this is a random phone number
 		consultPage.addPassword();
 		consultPage.addPasswordConfirm();
-		Thread.sleep(3000);
 		consultPage.clickEBIContinueButton();
 		sponsorSearchPage.clickChooseDifferentSponsor();
 		sponsorSearchPage.clickNameSponsorControl();
@@ -138,10 +140,12 @@ public class ConsultantPageTestCase {
 		sponsorSearchPage.clickSponsorConfirmButton();
 		starterKitPage.clickSelectYour3WrapsButton();
 		starterKitPage.select3Wraps();
+		starterKitPage.clickSaveWrapsToCartButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=3)
 	public void testNoEmail() throws Exception {
+		log.info("Just entered the testNoEmail() test method");
 		consultPage.clickGetStartedButton();
 		consultPage.addFirstName();
 		consultPage.addLastName();
@@ -152,7 +156,6 @@ public class ConsultantPageTestCase {
 		consultPage.addPhoneNumber(); // this is a random phone number
 		consultPage.addPassword();
 		consultPage.addPasswordConfirm();
-		Thread.sleep(3000);
 		consultPage.clickEBIContinueButton();
 		sponsorSearchPage.clickChooseDifferentSponsor();
 		sponsorSearchPage.clickNameSponsorControl();
@@ -160,10 +163,12 @@ public class ConsultantPageTestCase {
 		sponsorSearchPage.clickSponsorConfirmButton();
 		starterKitPage.clickSelectYour3WrapsButton();
 		starterKitPage.select3Wraps();
+		starterKitPage.clickSaveWrapsToCartButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=4)
 	public void testNoState() throws Exception {
+		log.info("Just entered the testNoState() test method");
 		consultPage.clickGetStartedButton();
 		consultPage.addFirstName();
 		consultPage.addLastName();
@@ -174,7 +179,6 @@ public class ConsultantPageTestCase {
 		consultPage.addPhoneNumber(); // this is a random phone number
 		consultPage.addPassword();
 		consultPage.addPasswordConfirm();
-		Thread.sleep(3000);
 		consultPage.clickEBIContinueButton();
 		sponsorSearchPage.clickChooseDifferentSponsor();
 		sponsorSearchPage.clickNameSponsorControl();
@@ -182,10 +186,12 @@ public class ConsultantPageTestCase {
 		sponsorSearchPage.clickSponsorConfirmButton();
 		starterKitPage.clickSelectYour3WrapsButton();
 		starterKitPage.select3Wraps();
+		starterKitPage.clickSaveWrapsToCartButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=5)
 	public void testNoBirthDate() throws Exception {
+		log.info("Just entered the testNoBirthDate() test method");
 		consultPage.clickGetStartedButton();
 		consultPage.addFirstName();
 		consultPage.addLastName();
@@ -196,7 +202,6 @@ public class ConsultantPageTestCase {
 		consultPage.addPhoneNumber(); // this is a random phone number
 		consultPage.addPassword();
 		consultPage.addPasswordConfirm();
-		Thread.sleep(3000);
 		consultPage.clickEBIContinueButton();
 		sponsorSearchPage.clickChooseDifferentSponsor();
 		sponsorSearchPage.clickNameSponsorControl();
@@ -204,10 +209,12 @@ public class ConsultantPageTestCase {
 		sponsorSearchPage.clickSponsorConfirmButton();
 		starterKitPage.clickSelectYour3WrapsButton();
 		starterKitPage.select3Wraps();
+		starterKitPage.clickSaveWrapsToCartButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=6)
 	public void testNoPhoneNumber() throws Exception {
+		log.info("Just entered the testNoPhoneNumber() test method");
 		consultPage.clickGetStartedButton();
 		consultPage.addFirstName();
 		consultPage.addLastName();
@@ -218,7 +225,6 @@ public class ConsultantPageTestCase {
 //		consultPage.addPhoneNumber(); // this is a random phone number
 		consultPage.addPassword();
 		consultPage.addPasswordConfirm();
-		Thread.sleep(3000);
 		consultPage.clickEBIContinueButton();
 		sponsorSearchPage.clickChooseDifferentSponsor();
 		sponsorSearchPage.clickNameSponsorControl();
@@ -226,6 +232,7 @@ public class ConsultantPageTestCase {
 		sponsorSearchPage.clickSponsorConfirmButton();
 		starterKitPage.clickSelectYour3WrapsButton();
 		starterKitPage.select3Wraps();
+		starterKitPage.clickSaveWrapsToCartButton();
 	}
 	
 	@AfterMethod
