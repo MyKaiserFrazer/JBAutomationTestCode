@@ -2,6 +2,7 @@ package page.classes;
 
 import utilities.Constants;
 import utilities.WaitTypes;
+import utilities.GenerateData;
 
 import java.util.List;
 import java.util.Random;
@@ -92,14 +93,16 @@ public class ConsultantPageFactory {
 */	
 	public void addFirstName() {
 		ctlFirstNameField.clear();
-		ctlFirstNameField.sendKeys("John");
-		log.info("Just entered the First name");
+		String firstName = new GenerateData().generateRandomString(19);
+		ctlFirstNameField.sendKeys(firstName);
+		log.info("Just entered a random First name with 19 characters");
 	}
 
 	public void addLastName() {
 		ctlLastNameField.clear();
-		ctlLastNameField.sendKeys("O'Grady");
-		log.info("Just entered the Last name");
+		String lastName = new GenerateData().generateRandomString(23);
+		ctlLastNameField.sendKeys(lastName);
+		log.info("Just entered a random Last name with 23 characters");
 	}
 
 	public void addEmail() {

@@ -15,6 +15,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
 import page.classes.ConsultantPageFactory;
+import page.classes.EnterBillingInfoPageFactory;
 import page.classes.SponsorSearchPageFactory;
 import page.classes.StarterKitPageFactory;
 
@@ -24,6 +25,7 @@ public class ConsultantPageTestCase {
 	ConsultantPageFactory consultPage;
 	SponsorSearchPageFactory sponsorSearchPage;
 	StarterKitPageFactory starterKitPage;
+	EnterBillingInfoPageFactory billingInfoPage;
 	
 	@BeforeSuite
 	public void setUp() throws Exception {
@@ -37,7 +39,7 @@ public class ConsultantPageTestCase {
 		
 
 		/**
-		 *  Creating a new object for the Shop Page. This calls the constructor of ShopPageFactory class. See that constructor
+		 *  Creating a new object for the Shop page. This calls the constructor of ShopPageFactory class. See that constructor
 		 *  in ShopPageFactory.java 
 		 */
 		consultPage = new ConsultantPageFactory(driver);
@@ -45,18 +47,25 @@ public class ConsultantPageTestCase {
 
 
 		/**
-		 *  Creating a new object for the Sponsor Search Page. This calls the constructor of SponsorSearchPageFactory class. See that constructor
+		 *  Creating a new object for the Sponsor Search page. This calls the constructor of SponsorSearchPageFactory class. See that constructor
 		 *  in SponsorSearchPageFactory.java
 		 */
 		sponsorSearchPage = new SponsorSearchPageFactory(driver);
 		log.info("The sponsorSearchPage object has been constructed");
 		
 		/**
-		 *  Creating a new object for the Starter Kit Page. This calls the constructor of StarterKitPageFactory class. See that constructor
+		 *  Creating a new object for the Starter Kit page. This calls the constructor of StarterKitPageFactory class. See that constructor
 		 *  in StarterKitPageFactory.java
 		 */
 		starterKitPage = new StarterKitPageFactory(driver);
 		log.info("The starterKitPage object has been constructed");
+		
+		/**
+		 *  Creating a new object for the Enter Billing Information page. This calls the constructor of EnterBillingInfoPageFactory class. See that constructor
+		 *  in StarterKitPageFactory.java
+		 */		
+		billingInfoPage = new EnterBillingInfoPageFactory(driver);
+		log.info("The billingInfoPage object has been contructed");
 		
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -95,6 +104,21 @@ public class ConsultantPageTestCase {
 		starterKitPage.clickSelectYour3WrapsButton();
 		starterKitPage.select3Wraps();
 		starterKitPage.clickSaveWrapsToCartButton();
+		starterKitPage.addWebSiteAlias(); // random name for personal website
+		starterKitPage.clickSaveStarterKitButton();
+		billingInfoPage.enterFirstNameCreditCardInfo();
+		billingInfoPage.enterLastNameCreditCardInfo();
+		Thread.sleep(3000);
+		billingInfoPage.enterCreditCardNum();
+		billingInfoPage.enterExpirationMonth();
+		billingInfoPage.enterExpirationYear();
+		billingInfoPage.enterCCVCode();
+		billingInfoPage.enterBillingAddr1();
+		billingInfoPage.enterBillingAddr2();
+		billingInfoPage.enterBillingCity();
+		billingInfoPage.enterBillingZipCode();
+		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=1)
@@ -118,6 +142,20 @@ public class ConsultantPageTestCase {
 		starterKitPage.clickSelectYour3WrapsButton();
 		starterKitPage.select3Wraps();
 		starterKitPage.clickSaveWrapsToCartButton();
+		starterKitPage.addWebSiteAlias(); // random name for personal website
+		starterKitPage.clickSaveStarterKitButton();
+		billingInfoPage.enterFirstNameCreditCardInfo();
+		billingInfoPage.enterLastNameCreditCardInfo();
+		billingInfoPage.enterCreditCardNum();
+		billingInfoPage.enterExpirationMonth();
+		billingInfoPage.enterExpirationYear();
+		billingInfoPage.enterCCVCode();
+		billingInfoPage.enterBillingAddr1();
+		billingInfoPage.enterBillingAddr2();
+		billingInfoPage.enterBillingCity();
+		billingInfoPage.enterBillingZipCode();
+		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=2)
@@ -141,6 +179,20 @@ public class ConsultantPageTestCase {
 		starterKitPage.clickSelectYour3WrapsButton();
 		starterKitPage.select3Wraps();
 		starterKitPage.clickSaveWrapsToCartButton();
+		starterKitPage.addWebSiteAlias(); // random name for personal website
+		starterKitPage.clickSaveStarterKitButton();
+		billingInfoPage.enterFirstNameCreditCardInfo();
+		billingInfoPage.enterLastNameCreditCardInfo();
+		billingInfoPage.enterCreditCardNum();
+		billingInfoPage.enterExpirationMonth();
+		billingInfoPage.enterExpirationYear();
+		billingInfoPage.enterCCVCode();
+		billingInfoPage.enterBillingAddr1();
+		billingInfoPage.enterBillingAddr2();
+		billingInfoPage.enterBillingCity();
+		billingInfoPage.enterBillingZipCode();
+		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=3)
@@ -164,6 +216,20 @@ public class ConsultantPageTestCase {
 		starterKitPage.clickSelectYour3WrapsButton();
 		starterKitPage.select3Wraps();
 		starterKitPage.clickSaveWrapsToCartButton();
+		starterKitPage.addWebSiteAlias(); // random name for personal website
+		starterKitPage.clickSaveStarterKitButton();
+		billingInfoPage.enterFirstNameCreditCardInfo();
+		billingInfoPage.enterLastNameCreditCardInfo();
+		billingInfoPage.enterCreditCardNum();
+		billingInfoPage.enterExpirationMonth();
+		billingInfoPage.enterExpirationYear();
+		billingInfoPage.enterCCVCode();
+		billingInfoPage.enterBillingAddr1();
+		billingInfoPage.enterBillingAddr2();
+		billingInfoPage.enterBillingCity();
+		billingInfoPage.enterBillingZipCode();
+		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=4)
@@ -187,6 +253,20 @@ public class ConsultantPageTestCase {
 		starterKitPage.clickSelectYour3WrapsButton();
 		starterKitPage.select3Wraps();
 		starterKitPage.clickSaveWrapsToCartButton();
+		starterKitPage.addWebSiteAlias(); // random name for personal website
+		starterKitPage.clickSaveStarterKitButton();
+		billingInfoPage.enterFirstNameCreditCardInfo();
+		billingInfoPage.enterLastNameCreditCardInfo();
+		billingInfoPage.enterCreditCardNum();
+		billingInfoPage.enterExpirationMonth();
+		billingInfoPage.enterExpirationYear();
+		billingInfoPage.enterCCVCode();
+		billingInfoPage.enterBillingAddr1();
+		billingInfoPage.enterBillingAddr2();
+		billingInfoPage.enterBillingCity();
+		billingInfoPage.enterBillingZipCode();
+		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=5)
@@ -210,6 +290,20 @@ public class ConsultantPageTestCase {
 		starterKitPage.clickSelectYour3WrapsButton();
 		starterKitPage.select3Wraps();
 		starterKitPage.clickSaveWrapsToCartButton();
+		starterKitPage.addWebSiteAlias(); // random name for personal website
+		starterKitPage.clickSaveStarterKitButton();
+		billingInfoPage.enterFirstNameCreditCardInfo();
+		billingInfoPage.enterLastNameCreditCardInfo();
+		billingInfoPage.enterCreditCardNum();
+		billingInfoPage.enterExpirationMonth();
+		billingInfoPage.enterExpirationYear();
+		billingInfoPage.enterCCVCode();
+		billingInfoPage.enterBillingAddr1();
+		billingInfoPage.enterBillingAddr2();
+		billingInfoPage.enterBillingCity();
+		billingInfoPage.enterBillingZipCode();
+		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=6)
@@ -233,12 +327,26 @@ public class ConsultantPageTestCase {
 		starterKitPage.clickSelectYour3WrapsButton();
 		starterKitPage.select3Wraps();
 		starterKitPage.clickSaveWrapsToCartButton();
+		starterKitPage.addWebSiteAlias(); // random name for personal website
+		starterKitPage.clickSaveStarterKitButton();
+		billingInfoPage.enterFirstNameCreditCardInfo();
+		billingInfoPage.enterLastNameCreditCardInfo();
+		billingInfoPage.enterCreditCardNum();
+		billingInfoPage.enterExpirationMonth();
+		billingInfoPage.enterExpirationYear();
+		billingInfoPage.enterCCVCode();
+		billingInfoPage.enterBillingAddr1();
+		billingInfoPage.enterBillingAddr2();
+		billingInfoPage.enterBillingCity();
+		billingInfoPage.enterBillingZipCode();
+		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.clickConfirmButton();
 	}
 	
 	@AfterMethod
 	public void tearDown() throws Exception {
-		log.info("About to call consultPage.referenceStartPage after a test has finished.");
-		consultPage.referenceStartPage();
+//		log.info("About to call consultPage.referenceStartPage after a test has finished.");
+//		consultPage.referenceStartPage();
 		//		Thread.sleep(2000);
 		//		driver.quit();
 	}

@@ -12,5 +12,6 @@ public class Constants {
 	public static final String cpiURL = "https://www.dev.jamberry.com/us/en/consultant";
 	public static final String Reference_cpiURL = "https://www.dev.jamberry.com/us/en/consultant";
 	public static final int baseYear = 1950;
+	public static final int baseExpireYear = 2015;
 }
 

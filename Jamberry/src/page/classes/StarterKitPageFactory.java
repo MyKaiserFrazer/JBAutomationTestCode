@@ -2,6 +2,7 @@ package page.classes;
 
 import java.util.List;
 import java.util.Random;
+import utilities.*;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -9,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class StarterKitPageFactory {
 	WebDriver driver;
@@ -30,6 +32,12 @@ public class StarterKitPageFactory {
 	
 	@FindBy(xpath="//button[@class='continue-button btn btn-primary']")
 	WebElement btnSaveWrapsToCart;
+	
+	@FindBy(id="WebsiteAlias")
+	WebElement ctlWebSiteAlias;
+	
+	@FindBy(xpath="//input[@id='continue-btn']")
+	WebElement btnSaveStarterKit;
 	
 	public void clickSelectYour3WrapsButton() {
 		btnSelectYour3Wraps.click();
@@ -72,5 +80,15 @@ public class StarterKitPageFactory {
 		Thread.sleep(3000); // for demo purposes
 	}
 	
+	public void addWebSiteAlias() {
+		String siteAlias = new GenerateData().generateRandomString(8);
+		ctlWebSiteAlias.sendKeys(siteAlias);
+		log.info("Just entered the website alias name: " + siteAlias);
+	}
+	
+	public void clickSaveStarterKitButton(){
+		btnSaveStarterKit.click();
+		log.info("Just clicked the Save Starter Kit button");
+	}
 
 }
