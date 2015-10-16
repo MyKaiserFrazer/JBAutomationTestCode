@@ -51,13 +51,16 @@ public class EnterBillingInfoPageFactory {
 	@FindBy(xpath="//input[@id='LastName']")
 	WebElement ctlCCLastName;
 	
-	@FindBy(xpath="//div[@id='payment-number']")
+	@FindBy(xpath="//iframe[@id='braintree-hosted-field-number']")
 	WebElement ctlCCNum;
 	
-	@FindBy(xpath="//div[@id='payment-expiration-month']")
+	@FindBy(xpath="//iframe[@id='braintree-hosted-field-expirationMonth']")
 	WebElement ctlPmtExpireMonth;
 	
-	@FindBy(xpath="//div[@id='payment-cvv']")
+	@FindBy(xpath="//iframe[@id='braintree-hosted-field-expirationYear']")
+	WebElement ctlPmtExpireYear;
+
+	@FindBy(xpath="//iframe[@id='braintree-hosted-field-cvv']")
 	WebElement ctlPmtCvv;
 	
 	@FindBy(xpath="//input[@id='BillingAddress_Address1']")
@@ -75,7 +78,10 @@ public class EnterBillingInfoPageFactory {
 	@FindBy(xpath="//div[@class='terms-checkbox']/a")
 	WebElement ctlPolicyAgreementChkBox;
 
-	@FindBy(id="btnConfirm")
+	@FindBy(xpath="//input[@id='billing-continue']")
+	WebElement btnBillingContinue;
+
+	@FindBy(xpath="//a[@id='btnConfirm']")
 	WebElement btnConfirm;
 
 	public void enterFirstNameCreditCardInfo(){
@@ -91,9 +97,12 @@ public class EnterBillingInfoPageFactory {
 	}
 	
 	public void enterCreditCardNum(){
+		String ccNum = new String();
+		ccNum = "4111111111111111";
 //		WaitTypes.clickWhenReady(driver, By.xpath("//div[@id='payment-number']"), 5);
-		WebElement creditCardControl = WaitTypes.fluentWait(driver, By.xpath("//div[@id='payment-number']"));
-		creditCardControl.sendKeys("4111111111111111");
+//		WebElement creditCardControl = WaitTypes.fluentWait(driver, By.xpath("//iframe[@id='braintree-hosted-field-number']"));
+//		creditCardControl.sendKeys("4111111111111111");
+		WaitTypes.sendKeysWhenReady(driver, By.xpath("//iframe[@id='braintree-hosted-field-number']"), ccNum, 5);
 		log.info("Entered creditcard number");
 	}
 	
@@ -105,7 +114,7 @@ public class EnterBillingInfoPageFactory {
 	
 	public void enterExpirationYear(){
 		int yearNum = Constants.baseExpireYear + randInt(2015, 2025);
-		ctlPmtExpireMonth.sendKeys(String.valueOf(yearNum));
+		ctlPmtExpireYear.sendKeys(String.valueOf(yearNum));
 		log.info("Entered expiration year: " + yearNum);
 	}
 	
@@ -115,6 +124,7 @@ public class EnterBillingInfoPageFactory {
 	}
 	
 	public void enterBillingAddr1(){
+		ctlBillingAddr1.clear();
 		String strBillingAddr1a = new GenerateData().generateRandomString(10);
 		String strBillingAddr1b = new GenerateData().generateRandomString(4);
 		String strBillingAddr1c = new GenerateData().generateRandomString(3);
@@ -126,6 +136,7 @@ public class EnterBillingInfoPageFactory {
 	}
 	
 	public void enterBillingAddr2(){
+		ctlBillingAddr2.clear();
 		String strBillingAddr2a = new GenerateData().generateRandomString(30);
 		int addrNum = randInt(0,999);
 		
@@ -135,6 +146,7 @@ public class EnterBillingInfoPageFactory {
 	}
 	
 	public void enterBillingCity(){
+		ctlBillingCity.clear();
 		String strBillingCity= new GenerateData().generateRandomString(10);
 		
 		// build a random city name string
@@ -168,8 +180,15 @@ public class EnterBillingInfoPageFactory {
 		log.info("Checked the Policy/Agreement/Consent/Privacy checkbox");
 	}
 	
+	public void clickBillingContinueButton(){
+//		btnBillingContinue.click();
+		WaitTypes.clickWhenReady(driver, By.xpath("//input[@id='billing-continue']"), 10);
+		log.info("Clicked the Billing Continue button");
+	}
+	
 	public void clickConfirmButton(){
-		btnConfirm.click();
+//		btnConfirm.click();
+		WaitTypes.clickWhenReady(driver, By.xpath("//a[@id='btnConfirm']"), 10);
 		log.info("Clicked the Confirm button");
 	}
 }

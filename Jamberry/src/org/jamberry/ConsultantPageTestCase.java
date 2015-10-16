@@ -84,7 +84,7 @@ public class ConsultantPageTestCase {
 		consultPage.referenceStartPage();
 	}
 	
-	@Test(groups = {"HappyPath"}, priority=0)
+	@Test(groups = {"HappyPath"}, priority=0, invocationCount=50)
 	public void testAll() throws Exception {
 		log.info("Just entered the testAll() test method");
 		consultPage.clickGetStartedButton();
@@ -108,7 +108,6 @@ public class ConsultantPageTestCase {
 		starterKitPage.clickSaveStarterKitButton();
 		billingInfoPage.enterFirstNameCreditCardInfo();
 		billingInfoPage.enterLastNameCreditCardInfo();
-		Thread.sleep(3000);
 		billingInfoPage.enterCreditCardNum();
 		billingInfoPage.enterExpirationMonth();
 		billingInfoPage.enterExpirationYear();
@@ -118,6 +117,7 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
 	
@@ -155,6 +155,7 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
 	
@@ -192,6 +193,7 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
 	
@@ -229,6 +231,7 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
 	
@@ -266,6 +269,7 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
 	
@@ -303,6 +307,7 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
 	
@@ -340,6 +345,7 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
 	

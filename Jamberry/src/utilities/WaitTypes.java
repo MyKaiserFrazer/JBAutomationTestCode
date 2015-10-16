@@ -31,6 +31,20 @@ public class WaitTypes {
 	}
 
 	/**
+	 * Send String characters once the element once it is ready
+	 * @param driver
+	 * @param locator
+	 * @param strValue
+	 * @param timeout
+	 */
+	public static void sendKeysWhenReady(WebDriver driver, By locator, String strValue, int timeout) {
+		WebElement element = null;
+		WebDriverWait wait = new WebDriverWait(driver, timeout);
+		element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+		element.sendKeys(strValue);
+	}
+
+	/**
 	 * Click the element once it is ready
 	 * @param driver
 	 * @param locator

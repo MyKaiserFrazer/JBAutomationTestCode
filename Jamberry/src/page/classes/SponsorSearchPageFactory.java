@@ -51,8 +51,11 @@ public class SponsorSearchPageFactory {
 
 	
 	public void clickNameSponsorControl() {
+		String strSponsorSearch = new String();
+		strSponsorSearch = "Eli" + Keys.ENTER;
 		log.info("About to enter the characters Eli into the Select a Sponsor search control");
-		ctlNameSponsorSearch.sendKeys("Eli" + Keys.ENTER);
+//		ctlNameSponsorSearch.sendKeys("Eli" + Keys.ENTER);
+		WaitTypes.sendKeysWhenReady(driver, By.xpath("//input[@id='name-sponsor-search']"), strSponsorSearch, 5);
 		log.info("Just entered the search string \"Eli\" plus the ENTER key" );
 	}
 	

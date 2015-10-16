@@ -3,22 +3,25 @@
 <suite name="TestSuite" preserve-order="true">
   <test name="ConsultantJoin">
   <groups>
-  	<define name = "HappyPath and OneEmptyField">
+  	<define name = "HappyPath and OneEmptyField" >
   		<include name = "HappyPath" />
   		<include name = "OneEmptyField" />
   	</define>
   	<define name = "OneEmptyField">
   		<include name = "OneEmptyField" />
   	</define>
-<!-- <run>  -->
-<!-- 	<include name = "OneEmptyField" />  -->
-<!-- </run>  -->
+  	<define name="HappyPath">
+  		<include name="HappyPath" />
+  	</define>
+	<run>
+	 	<include name = "HappyPath" />
+	</run>
   </groups>
-    <classes>
+	  <classes>
       <class name="org.jamberry.ConsultantPageTestCase">
       	<methods>
       		<include name="testAll" />
-      		<!-- <include name="testNoFirstName" /> -->
+      		<include name="testNoFirstName" />
       		<include name="testNoLastName" />
       		<include name="testNoEmail" />
       		<include name="testNoState" />

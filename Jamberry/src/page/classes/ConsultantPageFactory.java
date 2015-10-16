@@ -107,7 +107,10 @@ public class ConsultantPageFactory {
 
 	public void addEmail() {
 		ctlEmailField.clear();
-		ctlEmailField.sendKeys("email@domain.com");
+		int ran;
+		ran = 100 + (int)(Math.random()*((10000-100)+1));
+		driver.findElement(By.id("Email")).sendKeys("JoinTest" + ran + "@test.com");
+//		ctlEmailField.sendKeys("email@domain.com");
 		log.info("Just entered the email address");
 	}
 	
