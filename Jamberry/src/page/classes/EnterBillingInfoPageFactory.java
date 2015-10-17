@@ -132,7 +132,8 @@ public class EnterBillingInfoPageFactory {
 		
 		// build a funky random address string
 		ctlBillingAddr1.sendKeys(strBillingAddr1a + "" + strBillingAddr1b + "" + strBillingAddr1c + " " + addrNum);
-		log.info("Entered a random address string into Address 1 field");
+		log.info("Entered a random address string into Address 1 field: " + strBillingAddr1a + 
+				"" + strBillingAddr1b + "" + strBillingAddr1c + " " + addrNum);
 	}
 	
 	public void enterBillingAddr2(){
@@ -142,7 +143,7 @@ public class EnterBillingInfoPageFactory {
 		
 		// build a funky random address string
 		ctlBillingAddr2.sendKeys(strBillingAddr2a + "" + " " + addrNum);
-		log.info("Entered a random address string into Address 2 field");
+		log.info("Entered a random address string into Address 2 field: " + strBillingAddr2a + "" + " " + addrNum);
 	}
 	
 	public void enterBillingCity(){
@@ -151,7 +152,7 @@ public class EnterBillingInfoPageFactory {
 		
 		// build a random city name string
 		ctlBillingCity.sendKeys(strBillingCity);
-		log.info("Entered a random city name string into City field");
+		log.info("Entered a random city name string into City field: " + strBillingCity);
 	}
 	
 	public void selState() {
@@ -186,9 +187,10 @@ public class EnterBillingInfoPageFactory {
 		log.info("Clicked the Billing Continue button");
 	}
 	
-	public void clickConfirmButton(){
+	public void clickConfirmButton() throws InterruptedException{
 //		btnConfirm.click();
 		WaitTypes.clickWhenReady(driver, By.xpath("//a[@id='btnConfirm']"), 10);
 		log.info("Clicked the Confirm button");
+		Thread.sleep(4000);
 	}
 }

@@ -115,6 +115,7 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingAddr1();
 		billingInfoPage.enterBillingAddr2();
 		billingInfoPage.enterBillingCity();
+		billingInfoPage.selState();
 		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
 		billingInfoPage.clickBillingContinueButton();
@@ -153,6 +154,7 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingAddr1();
 		billingInfoPage.enterBillingAddr2();
 		billingInfoPage.enterBillingCity();
+		billingInfoPage.selState();
 		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
 		billingInfoPage.clickBillingContinueButton();
@@ -191,6 +193,7 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingAddr1();
 		billingInfoPage.enterBillingAddr2();
 		billingInfoPage.enterBillingCity();
+		billingInfoPage.selState();
 		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
 		billingInfoPage.clickBillingContinueButton();
@@ -229,6 +232,7 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingAddr1();
 		billingInfoPage.enterBillingAddr2();
 		billingInfoPage.enterBillingCity();
+		billingInfoPage.selState();
 		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
 		billingInfoPage.clickBillingContinueButton();
@@ -267,6 +271,7 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingAddr1();
 		billingInfoPage.enterBillingAddr2();
 		billingInfoPage.enterBillingCity();
+		billingInfoPage.selState();
 		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
 		billingInfoPage.clickBillingContinueButton();
@@ -305,6 +310,7 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingAddr1();
 		billingInfoPage.enterBillingAddr2();
 		billingInfoPage.enterBillingCity();
+		billingInfoPage.selState();
 		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
 		billingInfoPage.clickBillingContinueButton();
@@ -343,6 +349,7 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingAddr1();
 		billingInfoPage.enterBillingAddr2();
 		billingInfoPage.enterBillingCity();
+		billingInfoPage.selState();
 		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
 		billingInfoPage.clickBillingContinueButton();
