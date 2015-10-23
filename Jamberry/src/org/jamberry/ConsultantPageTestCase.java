@@ -75,7 +75,7 @@ public class ConsultantPageTestCase {
 		log.info("About to configure the log4j properties file");
 		PropertyConfigurator.configure("C:\\Users\\John Steele\\repos\\automationtestcode\\Jamberry\\src\\log4j.properties");
 		log.info("About to load the Consultant page");
-		driver.get("https://www.stage.jamberry.com/us/en/consultant");
+		driver.get("https://www.stage.jamberry.com/ca/en/consultant");
 		log.info("Got the url to start with");
 	}
 	
@@ -118,8 +118,8 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingAddr2();
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.selState();
-		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
@@ -157,8 +157,8 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingAddr2();
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.selState();
-		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
@@ -196,8 +196,8 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingAddr2();
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.selState();
-		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
@@ -235,8 +235,8 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingAddr2();
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.selState();
-		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
@@ -274,8 +274,8 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingAddr2();
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.selState();
-		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
@@ -313,8 +313,8 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingAddr2();
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.selState();
-		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
@@ -352,8 +352,8 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingAddr2();
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.selState();
-		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickPolicyAgreementCheckBox();
+		billingInfoPage.enterBillingZipCode();
 		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}

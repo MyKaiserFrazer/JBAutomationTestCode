@@ -108,10 +108,10 @@ public class ConsultantPageFactory {
 	public void addEmail() {
 		ctlEmailField.clear();
 		int ran;
-		ran = 100 + (int)(Math.random()*((10000-100)+1));
+		ran = 100 + (int)(Math.random()*((1000000-100)+1));
 		driver.findElement(By.id("Email")).sendKeys("JoinTest" + ran + "@test.com");
 //		ctlEmailField.sendKeys("email@domain.com");
-		log.info("Just entered the email address");
+		log.info("Just entered the email address: " + "JoinTest" + ran + "@test.com");
 	}
 	
 	public void selLanguage() {
@@ -134,8 +134,13 @@ public class ConsultantPageFactory {
 		List<WebElement> statesList = sel1.getOptions();
 		
 		// Get the number of options and randomly pick one
+		int randNum = 0;
 		int sizeMax = statesList.size();
-		int randNum = randInt(1, sizeMax); // get my index to a State
+		
+		// The province of Quebec (#11) is not open to Jamberry at this time
+		if (((randNum = randInt(1, sizeMax)) == 11)) {
+			randNum++;
+		}
 	
 		sel1.selectByIndex(randNum);
 		log.info("Choosing the state " + randNum);		

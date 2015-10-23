@@ -9,6 +9,7 @@ import utilities.WaitTypes;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +21,7 @@ import org.apache.commons.lang3.Range;
 public class EnterBillingInfoPageFactory {
 	
 	WebDriver driver;
+	GenerateData canadianZip;
 	static Logger log = Logger.getLogger(EnterBillingInfoPageFactory.class);
 
 	/**
@@ -75,13 +77,13 @@ public class EnterBillingInfoPageFactory {
 	@FindBy(xpath="//input[@id='BillingAddress_PostalCode']")
 	WebElement ctlBillingZipCode;
 
-	@FindBy(xpath="//div[@class='terms-checkbox']/a")
+	@FindBy(xpath="//div[@class='terms-checkbox']/a[contains(@href,'#')]")
 	WebElement ctlPolicyAgreementChkBox;
 
-	@FindBy(xpath="//input[@id='billing-continue']")
+	@FindBy(css="input[value='Continue']")
 	WebElement btnBillingContinue;
 
-	@FindBy(xpath="//a[@id='btnConfirm']")
+	@FindBy(css="#btnConfirm")
 	WebElement btnConfirm;
 
 	public void enterFirstNameCreditCardInfo(){
@@ -103,13 +105,13 @@ public class EnterBillingInfoPageFactory {
 //		WebElement creditCardControl = WaitTypes.fluentWait(driver, By.xpath("//iframe[@id='braintree-hosted-field-number']"));
 //		creditCardControl.sendKeys("4111111111111111");
 		WaitTypes.sendKeysWhenReady(driver, By.xpath("//iframe[@id='braintree-hosted-field-number']"), ccNum, 5);
-		log.info("Entered creditcard number");
+		log.info("Entered creditcard number: " + ccNum);
 	}
 	
 	public void enterExpirationMonth(){
 		int monthNum = randInt(1,12);
 		ctlPmtExpireMonth.sendKeys(String.valueOf(monthNum));
-		log.info("Entered expiration month");
+		log.info("Entered expiration month: " + monthNum);
 	}
 	
 	public void enterExpirationYear(){
@@ -171,9 +173,13 @@ public class EnterBillingInfoPageFactory {
 	}
 	
 	public void enterBillingZipCode(){
-		int zipNum = randInt(10000, 109999);
-		ctlBillingZipCode.sendKeys(String.valueOf(zipNum));		
-		log.info("Entered the zip code in the Billing Address form");
+//		int zipNum = randInt(10000, 109999);
+//		ctlBillingZipCode.sendKeys(String.valueOf(zipNum)); // US format zip code
+		canadianZip = new GenerateData();
+		ctlBillingZipCode.clear();
+		String caZip = canadianZip.generateCanadianZipCode();
+		ctlBillingZipCode.sendKeys(caZip + Keys.ENTER);
+		log.info("Entered the Canadian zip code in the Billing Address form: " + caZip);
 	}
 	
 	public void clickPolicyAgreementCheckBox(){
@@ -181,16 +187,20 @@ public class EnterBillingInfoPageFactory {
 		log.info("Checked the Policy/Agreement/Consent/Privacy checkbox");
 	}
 	
-	public void clickBillingContinueButton(){
+	public void clickBillingContinueButton() throws Exception{
+		log.info("In the clickBillingContinueButton() method."); 
+		log.info("Now let's click the button!");
+//		String text = btnBillingContinue.getText(); // not accomplishing much other than a replacement for Thread.sleep()
+//		log.info("The text for the billing-continue button is: " + text); // Ditto from above
 //		btnBillingContinue.click();
-		WaitTypes.clickWhenReady(driver, By.xpath("//input[@id='billing-continue']"), 10);
-		log.info("Clicked the Billing Continue button");
+		btnBillingContinue.submit();
+//		WaitTypes.clickWhenReady(driver, By.cssSelector("#billing-continue"), 10);
+		log.info("Clicked the billing Continue button");
 	}
 	
-	public void clickConfirmButton() throws InterruptedException{
-//		btnConfirm.click();
-		WaitTypes.clickWhenReady(driver, By.xpath("//a[@id='btnConfirm']"), 10);
+	public void clickConfirmButton(){
+		btnConfirm.click();
+//		WaitTypes.clickWhenReady(driver, By.xpath("//div[@class='sponsor-confirm-toolbar']/a[@id='btnConfirm']"), 10);
 		log.info("Clicked the Confirm button");
-		Thread.sleep(4000);
 	}
 }
