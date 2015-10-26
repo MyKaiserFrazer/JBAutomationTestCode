@@ -172,14 +172,24 @@ public class EnterBillingInfoPageFactory {
 		log.info("Choosing the state in the Billing Address form: " + randNum);		
 	}
 	
-	public void enterBillingZipCode(){
-//		int zipNum = randInt(10000, 109999);
-//		ctlBillingZipCode.sendKeys(String.valueOf(zipNum)); // US format zip code
+	public void enterBillingZipCodeCanada(){
 		canadianZip = new GenerateData();
 		ctlBillingZipCode.clear();
 		String caZip = canadianZip.generateCanadianZipCode();
-		ctlBillingZipCode.sendKeys(caZip + Keys.ENTER);
+		ctlBillingZipCode.sendKeys(caZip);	// Canadian format zip code, A1A 1A1
 		log.info("Entered the Canadian zip code in the Billing Address form: " + caZip);
+	}
+	
+	public void enterBillingZipCodeUSA(){
+		int usaZip = randInt(10000, 109999);
+		ctlBillingZipCode.sendKeys(String.valueOf(usaZip)); // US format zip code, 5 digits
+		log.info("Entered the USA zip code in the Billing Address form: " + usaZip);
+	}
+	
+	public void enterBillingZipCodeNZAU(){
+		int nzZip = randInt(1000, 10999);
+		ctlBillingZipCode.sendKeys(String.valueOf(nzZip)); // AU and NZ format zip code, 4 digits
+		log.info("Entered the New Zealand zip code in the Billing Address form: " + nzZip);
 	}
 	
 	public void clickPolicyAgreementCheckBox(){
@@ -192,8 +202,8 @@ public class EnterBillingInfoPageFactory {
 		log.info("Now let's click the button!");
 //		String text = btnBillingContinue.getText(); // not accomplishing much other than a replacement for Thread.sleep()
 //		log.info("The text for the billing-continue button is: " + text); // Ditto from above
-//		btnBillingContinue.click();
-		btnBillingContinue.submit();
+		btnBillingContinue.click();
+//		btnBillingContinue.submit(); // may be better to do a click() but submit() helped uncover bugs.
 //		WaitTypes.clickWhenReady(driver, By.cssSelector("#billing-continue"), 10);
 		log.info("Clicked the billing Continue button");
 	}

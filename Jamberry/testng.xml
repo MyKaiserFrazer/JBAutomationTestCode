@@ -1,33 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="TestSuite" preserve-order="true">
-  <test name="ConsultantJoin">
-  <groups>
-  	<define name = "HappyPath and OneEmptyField" >
-  		<include name = "HappyPath" />
-  		<include name = "OneEmptyField" />
-  	</define>
-  	<define name = "OneEmptyField">
-  		<include name = "OneEmptyField" />
-  	</define>
-  	<define name="HappyPath">
-  		<include name="HappyPath" />
-  	</define>
-	<run>
-	 	<include name = "HappyPath" />
-	</run>
-  </groups>
-	  <classes>
+<suite name="TestSuite">
+  <test name="ConsultantPageTestCase">
+	<classes>
       <class name="org.jamberry.ConsultantPageTestCase">
-      	<methods>
-      		<include name="testAll" />
-      		<include name="testNoFirstName" />
-      		<include name="testNoLastName" />
-      		<include name="testNoEmail" />
-      		<include name="testNoState" />
-      		<include name="testNoBirthDate" />
-      		<include name="testNoPhoneNumber" />
-      	</methods>
       </class>
     </classes>
   </test> <!-- Test -->

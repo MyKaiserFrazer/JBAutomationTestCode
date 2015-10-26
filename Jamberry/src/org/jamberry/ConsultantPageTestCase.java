@@ -4,6 +4,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+
 import utilities.*;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -69,25 +70,30 @@ public class ConsultantPageTestCase {
 		log.info("The billingInfoPage object has been contructed");
 		
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 		// Properties file used for logging	
 		log.info("About to configure the log4j properties file");
 		PropertyConfigurator.configure("C:\\Users\\John Steele\\repos\\automationtestcode\\Jamberry\\src\\log4j.properties");
 		log.info("About to load the Consultant page");
-		driver.get("https://www.stage.jamberry.com/ca/en/consultant");
+		driver.get("https://www.dev.jamberry.com/au/en/consultant");
 		log.info("Got the url to start with");
+
 	}
 	
+	/**
+	 * Ensure we're starting on the right page.
+	 * @throws Exception
+	 */
 	@BeforeMethod
 	public void testPrepBefore() throws Exception {
 		log.info("About to call consultPage.referenceStartPage before the test has started");
 		consultPage.referenceStartPage();
 	}
 	
-	@Test(groups = {"HappyPath"}, priority=0, invocationCount=50)
+	@Test(groups = { "functest", "checkintest" }, invocationCount=50)
 	public void testAll() throws Exception {
-		log.info("Just entered the testAll() test method");
+		log.info("Just entered the method testAll()");
 		log.info("Method invocationCount is: " + invocationCount++);
 		consultPage.clickGetStartedButton();
 		consultPage.addFirstName();
@@ -119,16 +125,18 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.selState();
 		billingInfoPage.clickPolicyAgreementCheckBox();
-		billingInfoPage.enterBillingZipCode();
+//		billingInfoPage.enterBillingZipCodeNZAU();
+		billingInfoPage.enterBillingZipCodeCanada();
+//		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
 	
-	@Test(groups = {"OneEmptyField"}, priority=1)
+	@Test(groups = { "functest" })
 	public void testNoFirstName() throws Exception {
 		log.info("Just entered the testNoFirstName() test method");
 		consultPage.clickGetStartedButton();
-//		consultPage.addFirstName();
+		consultPage.addFirstName();
 		consultPage.addLastName();
 		consultPage.addEmail();
 		consultPage.selLanguage();
@@ -158,7 +166,8 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.selState();
 		billingInfoPage.clickPolicyAgreementCheckBox();
-		billingInfoPage.enterBillingZipCode();
+		billingInfoPage.enterBillingZipCodeCanada();
+//		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
@@ -197,7 +206,8 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.selState();
 		billingInfoPage.clickPolicyAgreementCheckBox();
-		billingInfoPage.enterBillingZipCode();
+		billingInfoPage.enterBillingZipCodeCanada();
+//		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
@@ -236,7 +246,8 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.selState();
 		billingInfoPage.clickPolicyAgreementCheckBox();
-		billingInfoPage.enterBillingZipCode();
+		billingInfoPage.enterBillingZipCodeCanada();
+//		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
@@ -275,7 +286,8 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.selState();
 		billingInfoPage.clickPolicyAgreementCheckBox();
-		billingInfoPage.enterBillingZipCode();
+		billingInfoPage.enterBillingZipCodeCanada();
+//		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
@@ -314,7 +326,8 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.selState();
 		billingInfoPage.clickPolicyAgreementCheckBox();
-		billingInfoPage.enterBillingZipCode();
+		billingInfoPage.enterBillingZipCodeCanada();
+//		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
@@ -353,7 +366,8 @@ public class ConsultantPageTestCase {
 		billingInfoPage.enterBillingCity();
 		billingInfoPage.selState();
 		billingInfoPage.clickPolicyAgreementCheckBox();
-		billingInfoPage.enterBillingZipCode();
+		billingInfoPage.enterBillingZipCodeCanada();
+//		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
 		billingInfoPage.clickConfirmButton();
 	}
