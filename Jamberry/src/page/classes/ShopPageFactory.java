@@ -168,7 +168,7 @@ public class ShopPageFactory {
 	}
 	
 	public void enterLoginUserID() {
-		loginUserNameEditControl.sendKeys("kroo@jamberry.com");
+		loginUserNameEditControl.sendKeys("joseywales@test.com");
 		log.info("Just entered the userID");
 	}
 	
