@@ -75,8 +75,7 @@ public class SponsorSearchPageFactory {
 		/**
 		 * Locate the Select Sponsor buttons on each of the search results
 		 */
-		List<WebElement> rows = element.findElements(By.xpath("//div[@id='search-results']/div[@class='col-sm-12 sponsor-info-container']"
-				+ "/div[@class='sponsor-info']//div[@class='row']/div[@class='col-lg-2 col-xs-12']/a[@class='btn btn-sm btn-primary select-sponsor']"));
+		List<WebElement> rows = element.findElements(By.cssSelector(".btn.btn-sm.btn-primary.select-sponsor"));
 		
 /*		for(int i=0; i<rows.size(); i++) {
 			log.info("Inside the For loop");

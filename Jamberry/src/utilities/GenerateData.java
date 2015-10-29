@@ -18,8 +18,9 @@ public class GenerateData {
 		String sixthChar = "";
 		String seventhChar = "";
 		String zipCA;
-		
-		firstChar = RandomStringUtils.random(1, "abceghjklmnprstvxyABCEGHJKLMNPRSTVXY"); // no D,F,I,O,Q,U and W or Z in first position
+
+		// no D,F,I,O,Q,U and W or Z in first position
+		firstChar = RandomStringUtils.random(1, "abceghjklmnprstvxyABCEGHJKLMNPRSTVXY"); 
 		secondChar = RandomStringUtils.randomNumeric(1);
 		thirdChar = RandomStringUtils.random(1, "abceghjklmnprstvwxyzABCEGHJKLMNPRSTVWXYZ");
 		fifthChar = RandomStringUtils.randomNumeric(1);

@@ -80,7 +80,7 @@ public class EnterBillingInfoPageFactory {
 	@FindBy(xpath="//div[@class='terms-checkbox']/a[contains(@href,'#')]")
 	WebElement ctlPolicyAgreementChkBox;
 
-	@FindBy(css="input[value='Continue']")
+	@FindBy(css="#billing-continue") // input[value='Continue'] was being used prior as css???
 	WebElement btnBillingContinue;
 
 	@FindBy(css="#btnConfirm")
@@ -176,7 +176,7 @@ public class EnterBillingInfoPageFactory {
 		canadianZip = new GenerateData();
 		ctlBillingZipCode.clear();
 		String caZip = canadianZip.generateCanadianZipCode();
-		ctlBillingZipCode.sendKeys(caZip);	// Canadian format zip code, A1A 1A1
+		ctlBillingZipCode.sendKeys(caZip + Keys.TAB);	// Canadian format zip code, A1A 1A1
 		log.info("Entered the Canadian zip code in the Billing Address form: " + caZip);
 	}
 	
@@ -202,9 +202,10 @@ public class EnterBillingInfoPageFactory {
 		log.info("Now let's click the button!");
 //		String text = btnBillingContinue.getText(); // not accomplishing much other than a replacement for Thread.sleep()
 //		log.info("The text for the billing-continue button is: " + text); // Ditto from above
+		Thread.sleep(2000); // *** With Art's fix on 10/28/2015 I seem to need this delay.?? ***
 		btnBillingContinue.click();
 //		btnBillingContinue.submit(); // may be better to do a click() but submit() helped uncover bugs.
-//		WaitTypes.clickWhenReady(driver, By.cssSelector("#billing-continue"), 10);
+//		WaitTypes.clickWhenReady(driver, By.cssSelector("billing-continue"), 10);
 		log.info("Clicked the billing Continue button");
 	}
 	
