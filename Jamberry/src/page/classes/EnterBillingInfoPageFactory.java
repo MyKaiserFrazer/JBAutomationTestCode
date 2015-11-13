@@ -169,7 +169,7 @@ public class EnterBillingInfoPageFactory {
 		int randNum = randInt(1, sizeMax); // get my index to a State
 	
 		sel1.selectByIndex(randNum);
-		log.info("Choosing the state in the Billing Address form: " + randNum);		
+		log.info("Choosing the state in the Billing Address form: " + sel1.getOptions().get(randNum).getText());		
 	}
 	
 	public void enterBillingZipCodeCanada(){

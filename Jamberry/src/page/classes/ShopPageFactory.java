@@ -1,7 +1,12 @@
 package page.classes;
 
 import utilities.*;
+import utilities.GenerateData;
+
+import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,17 +16,17 @@ import org.openqa.selenium.support.PageFactory;
  * public class ShopPageFactory
  * @author John Steele
  * This is where the nitty gritty work goes on for the ShopPageTestCase class which makes the code
- * cleaner and ea 
+ * cleaner and easier to read and maintain. 
  *
  */
 public class ShopPageFactory {
 	WebDriver driver;
 	static Logger log = Logger.getLogger(ShopPageFactory.class);
 	
-	@FindBy(xpath="//*[@id='mainnav-collapse']//a[@title='Shop']")
+	@FindBy(xpath="//div[@id='mainnav-collapse']//a[@title='Shop']")
 	WebElement shopMenuItem;
 	
-	@FindBy(xpath=".//*[@id='nail-wraps']/a")
+	@FindBy(xpath="//li[@id='nail-wraps']/a")
 	WebElement nailWrapsMenuItem;
 	
 	@FindBy(xpath="//li[@class='cart-btn mini-cart']//a[contains(@href,'/shop/cart')]")
@@ -30,26 +35,20 @@ public class ShopPageFactory {
 	@FindBy(xpath="//li[@class='login-btn']//a[contains(@href,'/shop/account')]")
 	WebElement buttonBarLoginButton;
 	
-	@FindBy(name="search-btn")
+	@FindBy(css=".search-btn>a")
 	WebElement searchButton;
 	
 	@FindBy(id="locale-dropdown")
 	WebElement localeButton;
 	
-	@FindBy(xpath=".//*[@id='lacquers']/a")
+	@FindBy(xpath="//li[@id='lacquers']/a")
 	WebElement lacquersMenuItem;
 	
-	@FindBy(xpath=".//*[@id='nail-care']/a")
+	@FindBy(xpath="//li[@id='nail-care']/a")
 	WebElement handNailCareMenuItem;
 	
-	@FindBy(xpath=".//*[@id='gelenamel']/a")
+	@FindBy(xpath="//li[@id='gelenamel']/a")
 	WebElement gelEnamelMenuItem;
-	
-	@FindBy(xpath="//a[@class='add-cart-btn'][contains(@data-reactid,'butterfly-kisses')]")
-	WebElement butterflyKissesWrapAddToCart;
-	
-	@FindBy(xpath="//a[@class='add-cart-btn'][contains(@data-reactid,'leo-geo-lace')]")
-	WebElement leoGeoLaceWrapAddToCart;
 	
 	@FindBy(xpath=".//*[@id='jbn-shop']/div/div/div[2]/div/div[2]/div[1]/div/div/div/a[1]")
 	WebElement firstWrapAddToCart;
@@ -60,10 +59,10 @@ public class ShopPageFactory {
 	@FindBy(xpath=".//*[@id='jbn-shop']/div/div/div[2]/div/div[2]/div[3]/div/div/div/a[1]")
 	WebElement thirdWrapAddToCart;
 	
-	@FindBy(xpath=".//*[@id='UserName']")
+	@FindBy(xpath="//input[@id='UserName']")
 	WebElement loginUserNameEditControl;
 	
-	@FindBy(xpath=".//*[@id='Password']")
+	@FindBy(xpath="//input[@id='Password']")
 	WebElement passwordEditControl;
 	
 	@FindBy(xpath="//input[@class='btn btn-success']")
@@ -90,11 +89,7 @@ public class ShopPageFactory {
 		System.out.println("Current URL is: " + driver.getCurrentUrl());
 		if(!Constants.Reference_URL.equals(driver.getCurrentUrl())) {
 			driver.get(Constants.URL);	// opens the web page.
-			shopMenuItem.click();
-			log.info("Just clicked on Shop menu item");
-			
-			nailWrapsMenuItem.click();
-			log.info("Just clicked on the Nail Wraps menu item");	
+			log.info("On the base URL");
 		}
 	}
 	
@@ -112,14 +107,6 @@ public class ShopPageFactory {
 	public void clickNailWrapsMenu() {
 		nailWrapsMenuItem.click();
 		log.info("Just clicked the Nail Wraps menu item.");
-	}
-	
-	/**
-	 * Adds the Butterfly Kisses wrap to the Cart.
-	 */
-	public void addButterflyKissesWrapToCart() {
-		butterflyKissesWrapAddToCart.click();
-		log.info("Just added the Butterfly-Kisses wrap to the cart.");
 	}
 	
 	/**
@@ -147,14 +134,6 @@ public class ShopPageFactory {
 	}
 		
 	/**
-	 * Adds the Leo, Geo & Lace type wrap to the Cart.
-	 */
-	public void addLeoGeoLaceWrapToCart() {
-		leoGeoLaceWrapAddToCart.click();
-		log.info("Just added the Leo, Geo & Lace wrap to the cart.");
-	}
-
-	/**
 	 * Navigates to the Cart page.
 	 */
 	public void gotoCartPage() {
@@ -168,11 +147,13 @@ public class ShopPageFactory {
 	}
 	
 	public void enterLoginUserID() {
-		loginUserNameEditControl.sendKeys("joseywales@test.com");
+		loginUserNameEditControl.clear();
+		loginUserNameEditControl.sendKeys("testca@test.com");
 		log.info("Just entered the userID");
 	}
 	
 	public void enterPassword() {
+		passwordEditControl.clear();
 		passwordEditControl.sendKeys("Test123!");
 		log.info("Just entered the password");
 	}
@@ -187,30 +168,27 @@ public class ShopPageFactory {
 		log.info("Just clicked the MyAccount button-bar button");
 	}
 	
+	/**
+	 * Select 3 random items from the default Shop page which is usually wraps. See referenceStartPage() 
+	 * method above.
+	 */
+	public void shopSelect3Wraps() {
+	WebElement element = driver.findElement(By.xpath("//div[@data-reactid='.0.0.0.1.0']")); // parent element
 	
-/*		double expectedMerchandiseTotal = 44.00;
-		// String actualMerchandiseTotal;
-		
-		
-		// get the window handle
-		String parentHandle = driver.getWindowHandle();
-		
-		// get all windows handles.
-		Set<String> handles = driver.getWindowHandles();
-		
-		for(String handle: handles){
-			if(!handle.equals(parentHandle)) {
-				// switch to new window
-				driver.switchTo().window(handle);
-				
-				// do the asserts on merchandise Total, shipping price
-				// and total-before-tax.
-				actualMerchandiseTotal = driver.findElement(By.xpath("//div[@class='cart-totals']//td[@data-bind='currencyDisplay: merchandiseTotal']")).getText();
-				
-			}
-		}
-		
-		
+	List<WebElement> wraps = element.findElements(By.xpath("//div[@class='row'][@data-reactid='.0.0.0.1.0.1']//a[@class='add-cart-btn']"));
+	
+	log.info("The number of wraps available are " + wraps.size());
+	
+	int maxSize = wraps.size(); // get the number of wraps that are IN STOCK
+	
+	int num1 = GenerateData.randInt(0,maxSize);	// get 3 random numbers to select 3 wraps of those that are IN STOCK
+	int num2 = GenerateData.randInt(0,maxSize);
+	int num3 = GenerateData.randInt(0,maxSize);
+	log.info("The three random indexes to select wraps are: " + num1 + " " + num2 + " " + num3);
+	
+	wraps.get(num1).click();	// select the 3 wraps
+	wraps.get(num2).click();
+	wraps.get(num3).click();
 	}
-*/
+	
 }

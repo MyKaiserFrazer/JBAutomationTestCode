@@ -95,14 +95,14 @@ public class ConsultantPageFactory {
 		ctlFirstNameField.clear();
 		String firstName = new GenerateData().generateRandomString(19);
 		ctlFirstNameField.sendKeys(firstName);
-		log.info("Just entered a random First name with 19 characters");
+		log.info("Just entered a random First name with 19 characters: " + firstName);
 	}
 
 	public void addLastName() {
 		ctlLastNameField.clear();
 		String lastName = new GenerateData().generateRandomString(23);
 		ctlLastNameField.sendKeys(lastName);
-		log.info("Just entered a random Last name with 23 characters");
+		log.info("Just entered a random Last name with 23 characters: " + lastName);
 	}
 
 	public void addEmail() {
@@ -143,7 +143,7 @@ public class ConsultantPageFactory {
 		}
 	
 		sel1.selectByIndex(randNum);
-		log.info("Choosing the state " + randNum);		
+		log.info("Choosing the state in the initial Consultant info form - " + sel1.getOptions().get(randNum).getText());		
 	}
 	
 	public static int randInt(int min, int max) {
@@ -191,9 +191,10 @@ public class ConsultantPageFactory {
 		log.info("Confirmed the password");
 	}
 
-	public void clickEBIContinueButton() {
+	public void clickEBIContinueButton() throws InterruptedException {
 		log.info("About to click the Continue button");
 		btnContinueEnterBasicInfo.click();
+		Thread.sleep(2000);
 		log.info("Clicked the Continue button");
 //		WaitTypes.clickWhenReady(driver, By.xpath("//button[@id='continue-btn']"), 30);
 	}

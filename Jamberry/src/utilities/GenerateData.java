@@ -1,5 +1,7 @@
 package utilities;
 
+import java.util.Random;
+
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class GenerateData {
@@ -31,6 +33,17 @@ public class GenerateData {
 			+ sixthChar + String.valueOf(seventhChar);
 		
 		return zipCA;
+	}
+	
+	public static int randInt(int min, int max) {
+
+	    Random rand = new Random();
+
+	    // nextInt is normally exclusive of the top value,
+	    // so add 1 to make it inclusive
+	    int randomNum = rand.nextInt(max - min);
+
+	    return randomNum; 
 	}
 	
 }
