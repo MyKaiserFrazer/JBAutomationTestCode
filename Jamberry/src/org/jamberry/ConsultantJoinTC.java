@@ -20,8 +20,8 @@ import page.classes.EnterBillingInfoPageFactory;
 import page.classes.SponsorSearchPageFactory;
 import page.classes.StarterKitPageFactory;
 
-public class ConsultantPageTestCase {
-	static Logger log = Logger.getLogger(ConsultantPageTestCase.class);
+public class ConsultantJoinTC {
+	static Logger log = Logger.getLogger(ConsultantJoinTC.class);
 	private WebDriver driver;
 	ConsultantPageFactory consultPage;
 	SponsorSearchPageFactory sponsorSearchPage;
