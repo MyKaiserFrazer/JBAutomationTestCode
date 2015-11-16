@@ -104,7 +104,8 @@ public class EnterBillingInfoPageFactory {
 //		WaitTypes.clickWhenReady(driver, By.xpath("//div[@id='payment-number']"), 5);
 //		WebElement creditCardControl = WaitTypes.fluentWait(driver, By.xpath("//iframe[@id='braintree-hosted-field-number']"));
 //		creditCardControl.sendKeys("4111111111111111");
-		WaitTypes.sendKeysWhenReady(driver, By.xpath("//iframe[@id='braintree-hosted-field-number']"), ccNum, 5);
+//		WaitTypes.sendKeysWhenReady(driver, By.xpath("//iframe[@id='braintree-hosted-field-number']"), ccNum, 5);
+		WaitTypes.sendKeysWhenReady(driver, By.cssSelector("#payment-number"), ccNum, 5);
 		log.info("Entered creditcard number: " + ccNum);
 	}
 	
@@ -202,15 +203,16 @@ public class EnterBillingInfoPageFactory {
 		log.info("Now let's click the button!");
 //		String text = btnBillingContinue.getText(); // not accomplishing much other than a replacement for Thread.sleep()
 //		log.info("The text for the billing-continue button is: " + text); // Ditto from above
-		Thread.sleep(2000); // *** With Art's fix on 10/28/2015 I seem to need this delay.?? ***
+//		Thread.sleep(2000); // *** With Art's fix on 10/28/2015 I seem to need this delay.?? ***
 		btnBillingContinue.click();
 //		btnBillingContinue.submit(); // may be better to do a click() but submit() helped uncover bugs.
 //		WaitTypes.clickWhenReady(driver, By.cssSelector("billing-continue"), 10);
 		log.info("Clicked the billing Continue button");
 	}
 	
-	public void clickConfirmButton(){
+	public void clickConfirmButton() {
 		btnConfirm.click();
+//		WaitTypes.clickWhenReady(driver, By.id("btnConfirm"), 5);
 //		WaitTypes.clickWhenReady(driver, By.xpath("//div[@class='sponsor-confirm-toolbar']/a[@id='btnConfirm']"), 10);
 		log.info("Clicked the Confirm button");
 	}
