@@ -2,6 +2,7 @@ package page.classes;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import utilities.Constants;
 import utilities.GenerateData;
@@ -211,9 +212,26 @@ public class EnterBillingInfoPageFactory {
 	}
 	
 	public void clickConfirmButton() {
-		btnConfirm.click();
+		// get the handle to the window
+		String parentHandle = driver.getWindowHandle();
+		// get the handle to all the windows
+		Set<String> handles = driver.getWindowHandles();
+		
+		for (String handle: handles) {
+			if(handle.equals(parentHandle)) {
+				// do what is necessary
+				log.info("In the For loop of clickConfirmButton()");
+				btnConfirm.click();
+				log.info("Clicked the Confirm button");
+			
+				// switch back to parent window
+				driver.switchTo().window(parentHandle);
+			} else {
+				log.info("Not on the right window for some reason...");
+			}
+		}
+		
 //		WaitTypes.clickWhenReady(driver, By.id("btnConfirm"), 5);
 //		WaitTypes.clickWhenReady(driver, By.xpath("//div[@class='sponsor-confirm-toolbar']/a[@id='btnConfirm']"), 10);
-		log.info("Clicked the Confirm button");
 	}
 }
