@@ -2,7 +2,6 @@ package page.classes;
 
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 import utilities.Constants;
 import utilities.GenerateData;
@@ -81,11 +80,8 @@ public class EnterBillingInfoPageFactory {
 	@FindBy(xpath="//div[@class='terms-checkbox']/a[contains(@href,'#')]")
 	WebElement ctlPolicyAgreementChkBox;
 
-	@FindBy(css="#billing-continue") // input[value='Continue'] was being used prior as css???
+	@FindBy(xpath=".//*[@id='billing-continue']") // input[value='Continue'] was being used prior as css???
 	WebElement btnBillingContinue;
-
-	@FindBy(css="#btnConfirm")
-	WebElement btnConfirm;
 
 	public void enterFirstNameCreditCardInfo(){
 		String ccFirstName = new GenerateData().generateRandomString(12);
@@ -205,33 +201,17 @@ public class EnterBillingInfoPageFactory {
 //		String text = btnBillingContinue.getText(); // not accomplishing much other than a replacement for Thread.sleep()
 //		log.info("The text for the billing-continue button is: " + text); // Ditto from above
 //		Thread.sleep(2000); // *** With Art's fix on 10/28/2015 I seem to need this delay.?? ***
-		btnBillingContinue.click();
+		if(btnBillingContinue.isDisplayed()){
+			log.info("The billing Continue button is displayed, now click it.");
+			btnBillingContinue.submit();
+			log.info("Did a submit() on the Continue button");
+		}
+		else {
+			log.info("The billing Continue button was not displayed??");
+		}
 //		btnBillingContinue.submit(); // may be better to do a click() but submit() helped uncover bugs.
 //		WaitTypes.clickWhenReady(driver, By.cssSelector("billing-continue"), 10);
 		log.info("Clicked the billing Continue button");
 	}
 	
-	public void clickConfirmButton() {
-		// get the handle to the window
-		String parentHandle = driver.getWindowHandle();
-		// get the handle to all the windows
-		Set<String> handles = driver.getWindowHandles();
-		
-		for (String handle: handles) {
-			if(handle.equals(parentHandle)) {
-				// do what is necessary
-				log.info("In the For loop of clickConfirmButton()");
-				btnConfirm.click();
-				log.info("Clicked the Confirm button");
-			
-				// switch back to parent window
-				driver.switchTo().window(parentHandle);
-			} else {
-				log.info("Not on the right window for some reason...");
-			}
-		}
-		
-//		WaitTypes.clickWhenReady(driver, By.id("btnConfirm"), 5);
-//		WaitTypes.clickWhenReady(driver, By.xpath("//div[@class='sponsor-confirm-toolbar']/a[@id='btnConfirm']"), 10);
-	}
 }

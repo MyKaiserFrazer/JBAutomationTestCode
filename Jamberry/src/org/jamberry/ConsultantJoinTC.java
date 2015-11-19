@@ -15,6 +15,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
+import page.classes.ConfirmPageFactory;
 import page.classes.ConsultantPageFactory;
 import page.classes.EnterBillingInfoPageFactory;
 import page.classes.SponsorSearchPageFactory;
@@ -27,6 +28,7 @@ public class ConsultantJoinTC {
 	SponsorSearchPageFactory sponsorSearchPage;
 	StarterKitPageFactory starterKitPage;
 	EnterBillingInfoPageFactory billingInfoPage;
+	ConfirmPageFactory confirmPage;
 	int invocationCount = 1;
 	
 	@BeforeSuite
@@ -68,6 +70,9 @@ public class ConsultantJoinTC {
 		 */		
 		billingInfoPage = new EnterBillingInfoPageFactory(driver);
 		log.info("The billingInfoPage object has been contructed");
+
+		confirmPage = new ConfirmPageFactory(driver);
+		log.info("The confirmPage object has been constructed");
 		
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
@@ -76,7 +81,7 @@ public class ConsultantJoinTC {
 		log.info("About to configure the log4j properties file");
 		PropertyConfigurator.configure("C:\\Users\\John Steele\\repos\\automationtestcode\\Jamberry\\src\\log4j.properties");
 		log.info("About to load the Consultant page");
-		driver.get("https://www.dev.jamberry.com/us/en/consultant/");
+		driver.get("https://www.dev.jamberry.com/ca/en/consultant/");
 		log.info("Got the url to start with");
 
 	}
@@ -126,10 +131,10 @@ public class ConsultantJoinTC {
 		billingInfoPage.selState();
 		billingInfoPage.clickPolicyAgreementCheckBox();
 //		billingInfoPage.enterBillingZipCodeNZAU();
-//		billingInfoPage.enterBillingZipCodeCanada();
-		billingInfoPage.enterBillingZipCodeUSA();
+		billingInfoPage.enterBillingZipCodeCanada();
+//		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
-		billingInfoPage.clickConfirmButton();
+		confirmPage.clickConfirmButton();
 	}
 	
 	@Test(groups = { "functest" })
@@ -169,7 +174,7 @@ public class ConsultantJoinTC {
 		billingInfoPage.enterBillingZipCodeCanada();
 //		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
-		billingInfoPage.clickConfirmButton();
+		confirmPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=2)
@@ -209,7 +214,7 @@ public class ConsultantJoinTC {
 		billingInfoPage.enterBillingZipCodeCanada();
 //		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
-		billingInfoPage.clickConfirmButton();
+		confirmPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=3)
@@ -249,7 +254,7 @@ public class ConsultantJoinTC {
 		billingInfoPage.enterBillingZipCodeCanada();
 //		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
-		billingInfoPage.clickConfirmButton();
+		confirmPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=4)
@@ -289,7 +294,7 @@ public class ConsultantJoinTC {
 		billingInfoPage.enterBillingZipCodeCanada();
 //		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
-		billingInfoPage.clickConfirmButton();
+		confirmPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=5)
@@ -329,7 +334,7 @@ public class ConsultantJoinTC {
 		billingInfoPage.enterBillingZipCodeCanada();
 //		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
-		billingInfoPage.clickConfirmButton();
+		confirmPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=6)
@@ -369,7 +374,7 @@ public class ConsultantJoinTC {
 		billingInfoPage.enterBillingZipCodeCanada();
 //		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
-		billingInfoPage.clickConfirmButton();
+		confirmPage.clickConfirmButton();
 	}
 	
 	@AfterMethod

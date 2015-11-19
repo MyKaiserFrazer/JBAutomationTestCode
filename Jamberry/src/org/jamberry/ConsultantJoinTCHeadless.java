@@ -17,6 +17,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import page.classes.ConfirmPageFactory;
 import page.classes.ConsultantPageFactory;
 import page.classes.EnterBillingInfoPageFactory;
 import page.classes.SponsorSearchPageFactory;
@@ -29,6 +30,7 @@ public class ConsultantJoinTCHeadless {
 	SponsorSearchPageFactory sponsorSearchPage;
 	StarterKitPageFactory starterKitPage;
 	EnterBillingInfoPageFactory billingInfoPage;
+	ConfirmPageFactory confirmPage;
 	int invocationCount = 1;
 	protected static DesiredCapabilities dCaps;
 	
@@ -49,6 +51,7 @@ public class ConsultantJoinTCHeadless {
 		driver = new PhantomJSDriver(dCaps);
 		log.info("Just configured the PhantomJS headless driver");
 		
+	
 
 		/**
 		 *  Creating a new object for the Shop page. This calls the constructor of ShopPageFactory class. See that constructor
@@ -79,8 +82,11 @@ public class ConsultantJoinTCHeadless {
 		billingInfoPage = new EnterBillingInfoPageFactory(driver);
 		log.info("The billingInfoPage object has been contructed");
 		
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		confirmPage = new ConfirmPageFactory(driver);
+		log.info("The confirmPage object has been constructed");
+		
+//		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		// Properties file used for logging	
 		log.info("About to configure the log4j properties file");
@@ -139,7 +145,7 @@ public class ConsultantJoinTCHeadless {
 //		billingInfoPage.enterBillingZipCodeCanada();
 		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
-		billingInfoPage.clickConfirmButton();
+		confirmPage.clickConfirmButton();
 	}
 	
 	@Test(groups = { "functest" })
@@ -179,7 +185,7 @@ public class ConsultantJoinTCHeadless {
 		billingInfoPage.enterBillingZipCodeCanada();
 //		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
-		billingInfoPage.clickConfirmButton();
+		confirmPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=2)
@@ -219,7 +225,7 @@ public class ConsultantJoinTCHeadless {
 		billingInfoPage.enterBillingZipCodeCanada();
 //		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
-		billingInfoPage.clickConfirmButton();
+		confirmPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=3)
@@ -259,7 +265,7 @@ public class ConsultantJoinTCHeadless {
 		billingInfoPage.enterBillingZipCodeCanada();
 //		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
-		billingInfoPage.clickConfirmButton();
+		confirmPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=4)
@@ -299,7 +305,7 @@ public class ConsultantJoinTCHeadless {
 		billingInfoPage.enterBillingZipCodeCanada();
 //		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
-		billingInfoPage.clickConfirmButton();
+		confirmPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=5)
@@ -339,7 +345,7 @@ public class ConsultantJoinTCHeadless {
 		billingInfoPage.enterBillingZipCodeCanada();
 //		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
-		billingInfoPage.clickConfirmButton();
+		confirmPage.clickConfirmButton();
 	}
 	
 	@Test(groups = {"OneEmptyField"}, priority=6)
@@ -379,7 +385,7 @@ public class ConsultantJoinTCHeadless {
 		billingInfoPage.enterBillingZipCodeCanada();
 //		billingInfoPage.enterBillingZipCodeUSA();
 		billingInfoPage.clickBillingContinueButton();
-		billingInfoPage.clickConfirmButton();
+		confirmPage.clickConfirmButton();
 	}
 	
 	@AfterMethod
