@@ -1,22 +1,24 @@
 package page.classes;
 
+import java.io.File;
 import java.util.List;
 import java.util.Random;
 
-import utilities.Constants;
-import utilities.GenerateData;
-import utilities.WaitTypes;
-
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.Range;
+
+import utilities.Constants;
+import utilities.GenerateData;
+import utilities.WaitTypes;
 
 public class EnterBillingInfoPageFactory {
 	
@@ -80,7 +82,7 @@ public class EnterBillingInfoPageFactory {
 	@FindBy(xpath="//div[@class='terms-checkbox']/a[contains(@href,'#')]")
 	WebElement ctlPolicyAgreementChkBox;
 
-	@FindBy(xpath=".//*[@id='billing-continue']") // input[value='Continue'] was being used prior as css???
+	@FindBy(id="billing-continue") // input[value='Continue'] was being used prior as css???
 	WebElement btnBillingContinue;
 
 	public void enterFirstNameCreditCardInfo(){
@@ -95,14 +97,18 @@ public class EnterBillingInfoPageFactory {
 		log.info("Entered lastname for creditcard information");
 	}
 	
-	public void enterCreditCardNum(){
+	public void enterCreditCardNum() {
 		String ccNum = new String();
 		ccNum = "4111111111111111";
 //		WaitTypes.clickWhenReady(driver, By.xpath("//div[@id='payment-number']"), 5);
 //		WebElement creditCardControl = WaitTypes.fluentWait(driver, By.xpath("//iframe[@id='braintree-hosted-field-number']"));
 //		creditCardControl.sendKeys("4111111111111111");
 //		WaitTypes.sendKeysWhenReady(driver, By.xpath("//iframe[@id='braintree-hosted-field-number']"), ccNum, 5);
-		WaitTypes.sendKeysWhenReady(driver, By.cssSelector("#payment-number"), ccNum, 5);
+//		WaitTypes.sendKeysWhenReady(driver, By.id("payment-number"), ccNum, 5);
+		driver.switchTo().frame.		("payment-number");
+		WebElement creditCardNum = driver.findElement(By.xpath("//iframe[@id='braintree-hosted-field-number']"));
+		creditCardNum.sendKeys(ccNum);
+		driver.switchTo().defaultContent();
 		log.info("Entered creditcard number: " + ccNum);
 	}
 	
@@ -179,9 +185,12 @@ public class EnterBillingInfoPageFactory {
 	}
 	
 	public void enterBillingZipCodeUSA(){
-		int usaZip = randInt(10000, 109999);
-		ctlBillingZipCode.sendKeys(String.valueOf(usaZip)); // US format zip code, 5 digits
-		log.info("Entered the USA zip code in the Billing Address form: " + usaZip);
+//		int usaZip = randInt(10000, 109999);
+		String usZipCode = utilities.GenerateData.getRandomInt(5);
+//		ctlBillingZipCode.sendKeys(String.valueOf(usaZip)); // US format zip code, 5 digits
+		ctlBillingZipCode.sendKeys(usZipCode + Keys.ENTER);
+//		log.info("Entered the USA zip code in the Billing Address form: " + usaZip);
+		log.info("Entered the USA zip code in the Billing Address form: " + usZipCode);
 	}
 	
 	public void enterBillingZipCodeNZAU(){
@@ -201,17 +210,30 @@ public class EnterBillingInfoPageFactory {
 //		String text = btnBillingContinue.getText(); // not accomplishing much other than a replacement for Thread.sleep()
 //		log.info("The text for the billing-continue button is: " + text); // Ditto from above
 //		Thread.sleep(2000); // *** With Art's fix on 10/28/2015 I seem to need this delay.?? ***
-		if(btnBillingContinue.isDisplayed()){
-			log.info("The billing Continue button is displayed, now click it.");
-			btnBillingContinue.submit();
-			log.info("Did a submit() on the Continue button");
+		if(btnBillingContinue.isEnabled() && btnBillingContinue.isDisplayed()) {
+			log.info("The billing Continue button is enabled and displayed, now SnapShot it");
+			getSnapShot();
+			log.info("Now click the Billing Continue button.");
+			btnBillingContinue.click();
+			log.info("clicked the Continue button, now take another SnapShot");
+			getSnapShot();
 		}
+		
 		else {
 			log.info("The billing Continue button was not displayed??");
 		}
 //		btnBillingContinue.submit(); // may be better to do a click() but submit() helped uncover bugs.
 //		WaitTypes.clickWhenReady(driver, By.cssSelector("billing-continue"), 10);
 		log.info("Clicked the billing Continue button");
+	}
+	
+	public void getSnapShot() throws Exception {
+		String filename = utilities.GenerateData.getRandomString(7) + ".png";
+		String directory = "C:\\Users\\John Steele\\Desktop";
+		
+		File sourceFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(sourceFile, new File(directory + filename));
+		log.info("The filename was: " + filename);
 	}
 	
 }

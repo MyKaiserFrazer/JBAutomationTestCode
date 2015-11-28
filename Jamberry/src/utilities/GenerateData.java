@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+
 public class GenerateData {
 
 	public String generateRandomString(int length){
@@ -46,4 +47,24 @@ public class GenerateData {
 	    return randomNum; 
 	}
 	
+	public static String getRandomString(int length) {
+		StringBuilder sb = new StringBuilder();
+		String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		for(int i=0; i<length; i++) {
+			int index = (int)(Math.random() * characters.length());
+			sb.append(characters.charAt(index));
+		}
+		return sb.toString();
+	}
+	
+	public static String getRandomInt(int length) {
+		StringBuilder sb = new StringBuilder();
+		String characters = "0123456789";
+		for(int i=0; i<length; i++) {
+			int index = (int)(Math.random() * characters.length());
+			sb.append(characters.charAt(index));
+		}
+		return sb.toString();
+	}
+		
 }
