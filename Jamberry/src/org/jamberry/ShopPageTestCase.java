@@ -40,15 +40,15 @@ public class ShopPageTestCase {
 		cartPage = new CartPageFactory(driver);
 		
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		PropertyConfigurator.configure("C:\\Users\\John Steele\\repos\\automationtestcode\\Jamberry\\src\\log4j.properties");
+//		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		PropertyConfigurator.configure("C:\\Users\\JSteele.DESKTOP-6HUUN3S\\repos\\automationtestcode\\Jamberry\\src\\log4j.properties");
 		driver.get(Constants.URL); 
 	}
 
 	@Test(invocationCount=1)
 	public void test() throws Exception {
 //		int sleepTime = 0;
-		shopPage.referenceStartPage(); // start at the beginning
+//		shopPage.referenceStartPage(); // start at the beginning
 //		Thread.sleep(2000); // just to easier see what's happening through observation
 //		shopPage.clickButtonBarLoginButton(); // prepare to login
 //		shopPage.enterLoginUserID(); // enter userID to login
@@ -59,9 +59,7 @@ public class ShopPageTestCase {
 /*		shopPage.addFirstWrapToCart(); // add the 1st wrap on the page to the Cart.
 		shopPage.addSecondWrapToCart(); // add the 2nd wrap on the page to the Cart.
 		shopPage.addThirdWrapToCart(); // add the 3rd wrap on the page to the Cart.
-*/		Thread.sleep(2000);
-		shopPage.shopSelect3Wraps();
-		Thread.sleep(2000); // ponder on what was just selected, that's all
+*/		shopPage.shopSelect3Wraps();
 		shopPage.gotoCartPage(); // continue on at the Cart page
 		cartPage.numItemsInCart();
 

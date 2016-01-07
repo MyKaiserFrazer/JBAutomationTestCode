@@ -66,7 +66,7 @@ public class WaitTypes {
 	public static WebElement fluentWait(WebDriver driver, final By locator) {
 		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
 				.withTimeout(30, TimeUnit.SECONDS)
-				.pollingEvery(5, TimeUnit.SECONDS)
+				.pollingEvery(3, TimeUnit.SECONDS)
 				.ignoring(NoSuchElementException.class);
 
 		WebElement element = wait.until(new Function<WebDriver, WebElement>() {

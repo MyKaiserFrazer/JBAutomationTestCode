@@ -72,6 +72,12 @@ public class ConsultantPageFactory {
 	
 	@FindBy(xpath="//button[@id='continue-btn']")
 	WebElement btnContinueEnterBasicInfo;
+	
+	@FindBy(xpath="//input[@id='TaxId']")
+	WebElement ssnField;
+	
+	@FindBy(xpath="//a[@href='#']")
+	WebElement chkBox;
 
 	public void clickGetStartedButton() {
 		btnGetStarted.click();
@@ -189,6 +195,17 @@ public class ConsultantPageFactory {
 		ctlPasswordConfirmField.clear();
 		ctlPasswordConfirmField.sendKeys("Test123!");
 		log.info("Confirmed the password");
+	}
+	
+	public void addSSN() {
+		// ssnField.clear();
+		ssnField.sendKeys("000234567");
+		log.info("entered bogus ssn #");
+	}
+	
+	public void checkBox() {
+		chkBox.click();
+		log.info("just clicked the ssn check box");
 	}
 
 	public void clickEBIContinueButton() throws InterruptedException {

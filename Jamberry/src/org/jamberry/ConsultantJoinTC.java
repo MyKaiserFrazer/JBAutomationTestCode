@@ -74,7 +74,7 @@ public class ConsultantJoinTC {
 
 		// Properties file used for logging	
 		log.info("About to configure the log4j properties file");
-		PropertyConfigurator.configure("C:\\Users\\John Steele\\repos\\automationtestcode\\Jamberry\\src\\log4j.properties");
+		PropertyConfigurator.configure("C:\\Users\\JSteele.DESKTOP-6HUUN3S\\repos\\automationtestcode\\Jamberry\\src\\log4j.properties");
 		log.info("About to load the Consultant page");
 		driver.get("https://www.dev.jamberry.com/us/en/consultant/");
 		log.info("Got the url to start with");
@@ -105,6 +105,8 @@ public class ConsultantJoinTC {
 		consultPage.addPhoneNumber(); // this is a random phone number
 		consultPage.addPassword();
 		consultPage.addPasswordConfirm();
+		consultPage.addSSN();
+		consultPage.checkBox();
 		consultPage.clickEBIContinueButton();
 		sponsorSearchPage.clickNameSponsorControl();
 		sponsorSearchPage.selSponsors();
