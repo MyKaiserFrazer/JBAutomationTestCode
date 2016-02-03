@@ -16,8 +16,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+// import org.openqa.selenium.interactions.Actions;
 
 import java.util.Random;
+import java.util.Set;
 
 /**
  * public class ShopPageFactory
@@ -144,7 +146,7 @@ public class ShopPageFactory {
 	 * Navigates to the Cart page.
 	 */
 	public void gotoCartPage() {
-		cartButton.click();;
+		cartButton.click();
 		log.info("Just clicked on the Cart button.");
 	}
 	
@@ -181,7 +183,7 @@ public class ShopPageFactory {
 	 * @throws InterruptedException 
 	 */
 	public void shopSelect3Wraps() throws InterruptedException {
-	Random randomno = new Random();
+//	Random randomno = new Random();
 	WebElement element = driver.findElement(By.cssSelector(".col-md-9.col-sm-8>div")); // parent element
 	
 	List<WebElement> wraps = element.findElements(By.cssSelector(".tile"));
@@ -189,15 +191,43 @@ public class ShopPageFactory {
 	
 	log.info("The number of wraps available are " + wraps.size());
 	
-	int maxSize = wraps.size(); // get the number of wraps that are IN STOCK
+/*	int maxSize = wraps.size(); // get the number of wraps that are IN STOCK
 	int minSize = 1;
+*/	
 	
-	int num1 = 	randomno.nextInt((maxSize-minSize)+1) + minSize; 	// get 3 random numbers to select 3 wraps of those that are IN STOCK
+/*	int num1 = 	randomno.nextInt((maxSize-minSize)+1) + minSize; 	// get 3 random numbers to select 3 wraps of those that are IN STOCK
 	int num2 =  randomno.nextInt((maxSize-minSize)+1) + minSize;
 	int num3 =  randomno.nextInt((maxSize-minSize)+1) + minSize;
 	log.info("The three random indexes to select wraps are: " + num1 + " " + num2 + " " + num3);
+*/	
+	// Don't get 3 random numbers. Now I don't have to scroll vertically to get elements into the browser viewport.
+	int num1 = 1;
+	int num2 = 3;
+	int num3 = 4;
 	
-	WebElement tile1 = WaitTypes.getWhenVisible(driver, By.cssSelector("section#jbn-shop > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type("+ num1 +") > div > div > div:nth-of-type(2) > a:nth-of-type(1)"), 30);
+
+/*	WebElement firstWrap = driver.findElement(By.cssSelector("section#jbn-shop > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type("+ num1 +") > div > div > div:nth-of-type(2) > a:nth-of-type(1)"));
+	WebElement secondWrap = driver.findElement(By.cssSelector("section#jbn-shop > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type("+ num2 +") > div > div > div:nth-of-type(2) > a:nth-of-type(1)"));
+	WebElement thirdWrap = driver.findElement(By.cssSelector("section#jbn-shop > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type("+ num3 +") > div > div > div:nth-of-type(2) > a:nth-of-type(1)"));
+
+	Actions action = new Actions(driver);
+	action.moveToElement(firstWrap).click().build().perform();
+	log.info("Found and clicked the first selected wrap.");
+	action.moveToElement(secondWrap).click().build().perform();
+	log.info("Found and clicked the second selected wrap.");
+	action.moveToElement(thirdWrap).click().build().perform();
+	log.info("Found and clicked the third selected wrap. Now onto the Cart page...");
+*/	
+	WaitTypes.fluentWait(driver, By.cssSelector("section#jbn-shop > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type("+ num1 +") > div > div > div:nth-of-type(2) > a:nth-of-type(1)")).click();
+	log.info("Found and clicked the first randomly selected wrap.");
+	WaitTypes.fluentWait(driver, By.cssSelector("section#jbn-shop > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type("+ num2 +") > div > div > div:nth-of-type(2) > a:nth-of-type(1)")).click();
+	log.info("Found and clicked the second randomly selected wrap.");
+	WaitTypes.fluentWait(driver, By.cssSelector("section#jbn-shop > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type("+ num3 +") > div > div > div:nth-of-type(2) > a:nth-of-type(1)")).click();
+	log.info("Found and clicked the third randomly selected wrap.");
+	
+
+	
+	/*	WebElement tile1 = WaitTypes.getWhenVisible(driver, By.cssSelector("section#jbn-shop > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type("+ num1 +") > div > div > div:nth-of-type(2) > a:nth-of-type(1)"), 30);
 	if(tile1.isDisplayed())
 		if(tile1.isEnabled()){
 			log.info("About to take the before snapshot for Tile1");
@@ -237,6 +267,7 @@ public class ShopPageFactory {
 	WebElement tile3 = WaitTypes.getWhenVisible(driver, By.cssSelector("section#jbn-shop > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type("+ num3 +") > div > div > div:nth-of-type(2) > a:nth-of-type(1)"), 30);
 	if(tile3.isDisplayed())
 		if(tile3.isEnabled()){
+			log.info("About to take the before snapshot for Tile3");
 			try {
 				File scrShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 				FileUtils.copyFile(scrShot, new File("C:\\Users\\JSteele.DESKTOP-6HUUN3S\\Documents\\screenShots\\before3.png"));
@@ -250,7 +281,7 @@ public class ShopPageFactory {
 			} catch(Exception e) {e.printStackTrace();}
 		}else log.info("Tile3 is not Enabled yet");
 	else log.info("Tile3 is not displayed yet");
-
+*/
 	
 /*	WebElement tile1 = WaitTypes.getWhenVisible(driver, By.cssSelector("section#jbn-shop > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type("+ num1 +") > div > div > div:nth-of-type(2) > a:nth-of-type(1)"), 10);
 	tile1.click();
@@ -263,13 +294,6 @@ public class ShopPageFactory {
 	log.info("Found and clicked the third randomly selected wrap.");
 */	
 	
-/*	WaitTypes.fluentWait(driver, By.cssSelector("section#jbn-shop > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type("+ num1 +") > div > div > div:nth-of-type(2) > a:nth-of-type(1)")).click();
-	log.info("Found and clicked the first randomly selected wrap.");
-	WaitTypes.fluentWait(driver, By.cssSelector("section#jbn-shop > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type("+ num2 +") > div > div > div:nth-of-type(2) > a:nth-of-type(1)")).click();
-	log.info("Found and clicked the second randomly selected wrap.");
-	WaitTypes.fluentWait(driver, By.cssSelector("section#jbn-shop > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type("+ num3 +") > div > div > div:nth-of-type(2) > a:nth-of-type(1)")).click();
-	log.info("Found and clicked the third randomly selected wrap.");
-*/
 
 /*	WaitTypes.clickWhenReady(driver, By.cssSelector("section#jbn-shop > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type("+ num1 +") > div > div > div:nth-of-type(2) > a:nth-of-type(1)"), 10);
 	log.info("Found and clicked the first randomly selected wrap.");

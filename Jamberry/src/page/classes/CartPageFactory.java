@@ -7,6 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import utilities.WaitTypes;
 
 public class CartPageFactory {
 	WebDriver driver;
@@ -22,7 +26,11 @@ public class CartPageFactory {
 	WebElement cartItems;	
 	
 	public void numItemsInCart() throws Exception {
-		Thread.sleep(3000); // Give the page some time (3 seconds) to load the items into the cart due to Knockout
+		log.info("In the numItemsInCart method.");
+//		Thread.sleep(6000); // Give the page some time (6-7 seconds) to load the items into the cart due to Knockout
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		WebElement crtEle = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@class='total align-r']/span[@data-bind='currencyDisplay: finalPrice'][contains(text(),'$')]")));
+		
 		List<WebElement> allElements = driver.findElements(By.cssSelector("tr[class='item']"));
 		log.info("The number of Cart items found are: " + allElements.size());
 		
