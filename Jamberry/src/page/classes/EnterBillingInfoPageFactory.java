@@ -18,6 +18,14 @@ import org.openqa.selenium.support.ui.Select;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Range;
 
+/**
+ * public class EnterBillingInfoPageFactory
+ * @author John Steele
+ * <b>Description</b> This class defines the web elements that a user would interact with on the billing 
+ * information page. Methods are provided for randomly selecting data in dropdown controls or for entering
+ * random names and addresses and so forth for edit control fields.
+ *
+ */
 public class EnterBillingInfoPageFactory {
 	
 	WebDriver driver;
@@ -115,7 +123,7 @@ public class EnterBillingInfoPageFactory {
 	}
 	
 	public void enterExpirationYear(){
-		int yearNum = Constants.baseExpireYear + randInt(2015, 2025);
+		int yearNum = Constants.baseExpireYear + randInt(2016, 2026);
 		ctlPmtExpireYear.sendKeys(String.valueOf(yearNum));
 		log.info("Entered expiration year: " + yearNum);
 	}

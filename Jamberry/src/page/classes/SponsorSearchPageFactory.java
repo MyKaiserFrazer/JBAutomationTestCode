@@ -13,7 +13,14 @@ import org.openqa.selenium.support.PageFactory;
 
 import utilities.WaitTypes;
 
-
+/**
+ * public class SponsorSearchPageFactory
+ * @author John Steele
+ * <b>Description</b> This class defines the web elements that a user would interact with in the process of
+ * selecting a sponsor in order to become a Jamberry consultant. Methods are provide for entering strings into
+ * search controls, clicking buttons and checkboxes and so forth.
+ *
+ */
 public class SponsorSearchPageFactory {
 	WebDriver driver;
 	static Logger log = Logger.getLogger(SponsorSearchPageFactory.class);
@@ -49,7 +56,10 @@ public class SponsorSearchPageFactory {
 	@FindBy(xpath="//div[@class='sponsor-confirm-toolbar']/a[@class='btn btn-primary']")
 	WebElement btnSponsorConfirm;
 
-	
+	/**
+	 * clickNameSponsorControl() This method enters a search string to find sponsors whose name begins
+	 * with the characters "Jes". This can obviously be changed to any other string as desired.
+	 */
 	public void clickNameSponsorControl() {
 		String strSponsorSearch = new String();
 		strSponsorSearch = "Jes" + Keys.ENTER;
@@ -63,6 +73,10 @@ public class SponsorSearchPageFactory {
 		btnChooseDifferentSponsor.click();
 	}
 
+	/**
+	 * selSponsors() This method randomly selects a sponsor based on the search string entered in the 
+	 * clickNameSponsorControl() method above.
+	 */
 	public void selSponsors() {
 		log.info("In the selSponsors method");
 		int sizeMax = -1;
@@ -73,15 +87,10 @@ public class SponsorSearchPageFactory {
 		WebElement element = driver.findElement(By.xpath("//div[@id='search-results']")); // parent element
 		
 		/**
-		 * Locate the Select Sponsor buttons on each of the search results
+		 * Locate the list of Select Sponsor buttons on each of the search results
 		 */
 		List<WebElement> rows = element.findElements(By.cssSelector(".btn.btn-sm.btn-primary.select-sponsor"));
 		
-/*		for(int i=0; i<rows.size(); i++) {
-			log.info("Inside the For loop");
-			log.info(rows.get(i));
-		}
-*/		
 		sizeMax =rows.size(); // get the count of search results on the sponsor-search page
 		int randomIndex = randInt(1,sizeMax); // 
 		log.info("The randomIndex value is: " + randomIndex);

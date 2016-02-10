@@ -12,6 +12,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.apache.commons.lang3.RandomStringUtils;
 
+/**
+ * public class StarterKitPageFactory
+ * @author John Steele
+ * <b>Description</b> This class defines the web elements that a user would interact with in configuring their
+ * Starter Kit. Methods are provided for selecting 3 random nail wraps and a random name for their personal
+ * Jamberry website.
+ *
+ */
 public class StarterKitPageFactory {
 	WebDriver driver;
 	static Logger log = Logger.getLogger(StarterKitPageFactory.class);
@@ -55,7 +63,9 @@ public class StarterKitPageFactory {
 	    return randomNum;
 	}
 
-	
+	/**
+	 * select3Wraps() This method chooses 3 nail wraps based on a random selection.
+	 */
 	public void select3Wraps() {
 		WebElement element = driver.findElement(By.xpath("//div[@class='wraps-holder']")); // parent element
 		
@@ -80,6 +90,9 @@ public class StarterKitPageFactory {
 		Thread.sleep(3000); // for demo purposes
 	}
 	
+	/**
+	 * addWebSiteAlias() This method provides an eight character string for the name of a user's personal website.
+	 */
 	public void addWebSiteAlias() {
 		String siteAlias = new GenerateData().generateRandomString(8);
 		ctlWebSiteAlias.sendKeys(siteAlias);

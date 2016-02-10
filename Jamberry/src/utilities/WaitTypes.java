@@ -31,7 +31,7 @@ public class WaitTypes {
 	}
 
 	/**
-	 * Send String characters once the element once it is ready
+	 * Send String characters once the element is ready.
 	 * @param driver
 	 * @param locator
 	 * @param strValue

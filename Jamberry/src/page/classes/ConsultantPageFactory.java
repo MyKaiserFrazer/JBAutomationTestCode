@@ -16,6 +16,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+/**
+ * public class ConsultantPageFactory
+ * @author John Steele
+ * <b>Description</b> This class defines the web elements that a user would interact with when entering their
+ * basic information such as first and last names, email address, State, birthdate, phone, and password. The
+ * methods provide for input of random strings of characters or numbers in these web elements.
+ *
+ */
 public class ConsultantPageFactory {
 	WebDriver driver;
 	static Logger log = Logger.getLogger(ConsultantPageFactory.class);
@@ -211,7 +219,7 @@ public class ConsultantPageFactory {
 	public void clickEBIContinueButton() throws InterruptedException {
 		log.info("About to click the Continue button");
 		btnContinueEnterBasicInfo.click();
-		Thread.sleep(2000);
+		Thread.sleep(2000);		// I will eventually want to remove this and all sleep() methods and go with Wait types.
 		log.info("Clicked the Continue button");
 //		WaitTypes.clickWhenReady(driver, By.xpath("//button[@id='continue-btn']"), 30);
 	}
